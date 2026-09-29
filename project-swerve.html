@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>3-wheel offset coaxial swerve drivetrain — William</title>
-<link rel="stylesheet" href="styles.css">
+<title>3-wheel coaxial swerve drivetrain — William</title>
+<meta name="description" content="A three-module coaxial swerve drivetrain, from compact mechanical architecture through the next stages of closed-loop testing.">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 <div class="wrap">
@@ -12,49 +13,133 @@
     <a href="index.html" class="brand">William</a>
     <a href="index.html#work" class="btn btn-secondary">Back to work</a>
   </header>
-  <main>
-    <section class="detail-top">
+  <main class="project-case">
+    <section class="case-hero detail-top">
       <a class="detail-back" href="index.html#work">← Project timeline</a>
-      <div class="detail-heading">
+      <div class="case-hero-heading">
         <div>
-          <p class="hero-eyebrow">2026 · Drivetrain</p>
-          <h1>3-wheel offset coaxial swerve drivetrain</h1>
+          <p class="hero-eyebrow">Custom drivetrain / In development</p>
+          <h1>Swerve drivetrain prototype</h1>
         </div>
-        <p class="detail-lede">A modular swerve system built around concentric steering and drive shafts, leaving the attachment plate clear for interchangeable payloads.</p>
+        <p class="detail-lede">I wanted a drivetrain that could move in any direction without making the robot feel awkward or overbuilt. This version uses three pods and a compact layout that should be easier to tune as I test it.</p>
       </div>
-      <div class="detail-hero"><img src="assets/SwerveIsometricCAD.png" alt="Isometric CAD render of the 3-wheel swerve drivetrain"></div>
-    </section>
-    <section class="detail-section">
-      <div class="detail-section-grid">
-        <h2>Build overview</h2>
-        <div class="detail-copy">
-          <p>The main constraint was keeping the mechanism compact without giving up a clean, swappable interface for attachments. The offset pod lets the steering and drive systems share the same centerline while the payload structure remains accessible.</p>
-          <p>This is where you can add testing results, iteration notes, match footage, or a link to the CAD files.</p>
-        </div>
-      </div>
-    </section>
-    <section class="detail-section">
-      <div class="detail-section-grid">
-        <h2>Gallery</h2>
-        <div class="detail-gallery">
-          <figure><img src="assets/SwervePodCAD.png" alt="CAD render of the swerve pod"><figcaption>Pod assembly</figcaption></figure>
-          <figure><img src="assets/SwerveTopCAD.png" alt="Top CAD view of the swerve drivetrain"><figcaption>Top layout</figcaption></figure>
-          <figure><img src="assets/SwerveTop.jpeg" alt="Top view of the swerve drivetrain"><figcaption>Prototype view</figcaption></figure>
-        </div>
+      <figure class="case-hero-image">
+        <img src="assets/Engineering/SwerveIsometricCAD.png" alt="Isometric CAD render of the three-module coaxial swerve drivetrain">
+        <figcaption><span>Full drivetrain / isometric CAD</span><span>Mechanical system</span></figcaption>
+      </figure>
+      <div class="case-specs" aria-label="Drivetrain specifications">
+        <div><strong>03</strong><span>swerve modules</span></div>
+        <div><strong>120°</strong><span>module spacing</span></div>
+        <div><strong>70 mm</strong><span>wheel diameter</span></div>
+        <div><strong>06</strong><span>IR distance sensors</span></div>
       </div>
     </section>
-    <section class="detail-section">
-      <div class="detail-section-grid">
-        <h2>Design notes</h2>
-        <div class="detail-notes">
-          <details open><summary>Components and architecture</summary><p>Add the motors, bearings, encoders, fasteners, electronics, and interfaces used here. Explain what each component does in the system.</p></details>
-          <details><summary>Design decisions</summary><p>Explain why you chose the coaxial layout, the offset geometry, and the attachment interface. Include alternatives you considered and what tradeoffs decided the final design.</p></details>
-          <details><summary>Testing and next iteration</summary><p>Add measured results, failure points, and the next change you would make after testing.</p></details>
+
+    <section class="case-section case-architecture">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">01 / System</p>
+        <h2>Three pods, compact layout.</h2>
+        <p>With the pods spaced 120° apart, the robot can move in any direction or turn in place without the chassis feeling too crowded.</p>
+      </div>
+      <div class="case-architecture-grid">
+        <figure class="case-plan-image">
+          <img src="assets/Engineering/SwerveTopCAD.png" alt="Top CAD view showing the three swerve modules arranged around the chassis">
+          <figcaption>Three-module layout / top CAD</figcaption>
+        </figure>
+        <div class="case-systems">
+          <article>
+            <span class="case-index">A</span>
+            <div><h3>Drive and steering</h3><p>Each 70 mm wheel has its own drive motor. A belt-reduced steering motor turns the pod, and a REV Through Bore Encoder V2 measures its actual angle.</p></div>
+          </article>
+          <article>
+            <span class="case-index">B</span>
+            <div><h3>Two computers, different jobs</h3><p>The control plan gives the Raspberry Pi Pico encoder feedback, PID, kinematics, and motor commands. A Raspberry Pi 4B takes on navigation and sensor processing.</p></div>
+          </article>
+          <article>
+            <span class="case-index">C</span>
+            <div><h3>Sensors and power</h3><p>Six GP2Y0E03 distance sensors connect through a TCA9548A I²C multiplexer. The planned 12 V power system uses protected distribution and buck converters for the lower-voltage electronics.</p></div>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <section class="case-section case-build" aria-labelledby="swerve-build-title">
+      <div class="case-section-heading case-build-heading">
+        <p class="case-eyebrow">02 / Build log</p>
+        <h2 id="swerve-build-title">How the build is taking shape.</h2>
+        <p>The main steps so far, plus what comes next. I can add dates as I fill in the build history.</p>
+      </div>
+      <ol class="case-timeline">
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">01</span>
+          <h3>Choose the layout</h3>
+          <p>I went with three pods spaced 120° apart to keep the chassis compact and leave a clear interface for attachments.</p>
+          <span class="case-timeline-tag">Layout</span>
+        </li>
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">02</span>
+          <h3>Develop the modules</h3>
+          <p>The pods put drive and steering on a shared axis, with a belt reduction for steering. The chassis uses 70 mm wheels and 3D-printed, carbon-fiber-reinforced structure.</p>
+          <span class="case-timeline-tag">Mechanical</span>
+        </li>
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">03</span>
+          <h3>Bring in the electronics</h3>
+          <p>The plan is to let the Pico handle real-time motor control while the Pi runs higher-level tasks. Encoder and distance-sensor feedback will feed into that setup.</p>
+          <span class="case-timeline-tag">Electronics + control</span>
+        </li>
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">04</span>
+          <h3>Test and tune</h3>
+          <p>Next, I’ll test one pod under load, then check the full drivetrain and odometry. Vision and autonomous navigation can come later, once the basic controls are dependable.</p>
+          <span class="case-timeline-tag">Next / validation</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="case-section case-decisions">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">03 / Design choices</p>
+        <h2>Why this layout.</h2>
+      </div>
+      <div class="case-tradeoffs">
+        <article><span>01</span><h3>Three pods, not four</h3><p>One fewer module means fewer motors, drivers, mounts, and wires. The tradeoff is less redundancy and more responsibility on each pod and its mounting points.</p></article>
+        <article><span>02</span><h3>Coaxial packaging</h3><p>I chose the coaxial layout to keep the pods compact and leave the top plate open for interchangeable attachments.</p></article>
+        <article><span>03</span><h3>Measure the pod itself</h3><p>The encoder reads the wheel's actual steering angle. That lets the controller account for belt flex or backlash instead of relying only on the motor's position.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section case-validation">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">04 / Next iteration</p>
+        <h2>Get the drivetrain working before autonomy.</h2>
+        <p>For now, I’m focused on making the drivetrain predictable. Good control and odometry need to come before vision or autonomous navigation.</p>
+      </div>
+      <ol class="case-test-list">
+        <li><span>01</span><div><h3>Test one pod under load</h3><p>Record steering response, backlash, belt slip, encoder accuracy, speed, current, and temperature. First goal: make the pod hit the same commanded angles reliably.</p></div></li>
+        <li><span>02</span><div><h3>Try the basic driving motions</h3><p>Test forward and sideways movement, diagonals, turns, and combinations. If the robot drifts, check the encoder offsets, module positions, and mechanical alignment.</p></div></li>
+        <li><span>03</span><div><h3>Check odometry and obstacle stops</h3><p>Run straight lines, squares, circles, and figure eights, then compare the estimates with known distances. After that, check that the IR sensors can trigger a stop.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="case-section case-gallery">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">05 / Design study</p>
+        <h2>From CAD to prototype.</h2>
+      </div>
+      <div class="detail-gallery">
+        <figure><img src="assets/Engineering/SwervePodCAD.png" alt="CAD render of one coaxial swerve pod"><figcaption>01 / Pod assembly</figcaption></figure>
+        <figure><img src="assets/Engineering/SwerveTopCAD.png" alt="Top CAD view of the three-module drivetrain"><figcaption>02 / Triangular layout</figcaption></figure>
+        <figure><img src="assets/Engineering/SwerveTop.jpeg" alt="Top view of the swerve drivetrain prototype"><figcaption>03 / Prototype view</figcaption></figure>
       </div>
     </section>
   </main>
   <footer class="detail-footer"><a href="index.html#work">← Back to project timeline</a></footer>
 </div>
+<script src="script.js?v=2"></script>
 </body>
 </html>

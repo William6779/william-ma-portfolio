@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FTC robot, 70% 3D-printed — William</title>
-<link rel="stylesheet" href="styles.css">
+<title>FTC Decode competition robot — William</title>
+<meta name="description" content="A 33-pound FTC Decode robot with a mecanum drivetrain, dual-flywheel launcher, turret, custom transfer system, odometry, and vision.">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 <div class="wrap">
@@ -12,50 +13,144 @@
     <a href="index.html" class="brand">William</a>
     <a href="index.html#work" class="btn btn-secondary">Back to work</a>
   </header>
-  <main>
-    <section class="detail-top">
+  <main class="project-case">
+    <section class="case-hero detail-top">
       <a class="detail-back" href="index.html#work">← Project timeline</a>
-      <div class="detail-heading">
+      <div class="case-hero-heading">
         <div>
-          <p class="hero-eyebrow">2026 · FTC</p>
-          <h1>FTC robot, 70% 3D-printed</h1>
+          <p class="hero-eyebrow">FTC Decode / Competition robot</p>
+          <h1>FTC robot build</h1>
         </div>
-        <p class="detail-lede">A lightweight competition robot combining printed structure, automatic goal tracking, a turret, and an artifact sorter.</p>
+        <p class="detail-lede">This robot was built around a simple goal: make a compact, serviceable machine that could be adjusted quickly. I leaned on 3D-printed parts and a tight subsystem layout so changes were easy to make during testing.</p>
       </div>
-      <div class="detail-hero"><img src="assets/FTCDecoderFront.jpg" alt="Front view of the FTC robot"></div>
-    </section>
-    <section class="detail-section">
-      <div class="detail-section-grid">
-        <h2>Build overview</h2>
-        <div class="detail-copy">
-          <p>The robot uses printed structure where fast iteration matters, while keeping the load-bearing and wear surfaces easy to replace. The result is a chassis that can change overnight without turning every revision into a machining project.</p>
-          <p>This is where you can add the season goal, your role on the team, software details, and a short explanation of what changed between versions.</p>
-        </div>
-      </div>
-    </section>
-    <section class="detail-section">
-      <div class="detail-section-grid">
-        <h2>Gallery</h2>
-        <div class="detail-gallery">
-          <figure><img src="assets/FTCDecoderBack.jpg" alt="Back view of the FTC robot"><figcaption>Rear assembly</figcaption></figure>
-          <figure><img src="assets/FTCDecodeIsometricCAD.png" alt="Isometric CAD render of the FTC robot"><figcaption>System layout</figcaption></figure>
-          <figure><img src="assets/FTCTurretCAD.png" alt="CAD render of the FTC turret"><figcaption>Turret detail</figcaption></figure>
-          <figure><img src="assets/FTCPusherExplodedCAD.png" alt="Exploded CAD render of the FTC pusher mechanism"><figcaption>Pusher mechanism</figcaption></figure>
-        </div>
+      <figure class="case-hero-image">
+        <img src="assets/Engineering/FTCDecoderFront.jpg" alt="Front view of the FTC Decode competition robot">
+        <figcaption><span>FTC Decode / Front view</span><span>Competition robot</span></figcaption>
+      </figure>
+      <div class="case-specs" aria-label="Robot specifications">
+        <div><strong>33 lb</strong><span>robot mass</span></div>
+        <div><strong>150+</strong><span>custom parts</span></div>
+        <div><strong>70%+</strong><span>custom parts printed</span></div>
+        <div><strong>30 ft</strong><span>launcher range</span></div>
       </div>
     </section>
-    <section class="detail-section">
-      <div class="detail-section-grid">
-        <h2>Design notes</h2>
-        <div class="detail-notes">
-          <details open><summary>Components and architecture</summary><p>Add the motors, servos, sensors, control hub, printed materials, and mechanisms used in the final robot.</p></details>
-          <details><summary>Design decisions</summary><p>Explain where 3D printing helped iteration, where it introduced constraints, and how you balanced weight, stiffness, serviceability, and match reliability.</p></details>
-          <details><summary>Testing and next iteration</summary><p>Add cycle times, driver feedback, failure modes, and the next improvement you would make.</p></details>
+
+    <section class="case-section case-architecture">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">01 / Robot systems</p>
+        <h2>A lot of mechanism in a small robot.</h2>
+        <p>The chassis, launcher, turret, transfer, and wiring all had to fit together. We designed them as one system and then adjusted parts as testing showed what needed to change.</p>
+      </div>
+      <div class="case-architecture-grid">
+        <figure class="case-plan-image">
+          <img src="assets/Engineering/FTCDecodeIsometricCAD.png" alt="Isometric CAD render showing the FTC robot's integrated mechanisms">
+          <figcaption>Robot assembly / isometric CAD</figcaption>
+        </figure>
+        <div class="case-systems">
+          <article>
+            <span class="case-index">A</span>
+            <div><h3>Mecanum drivetrain</h3><p>Four mecanum wheels provide forward motion, strafing, and rotation. Seven goBILDA Yellow Jacket 312 RPM motors power the drivetrain, selected to balance speed, torque, and the available space.</p></div>
+          </article>
+          <article>
+            <span class="case-index">B</span>
+            <div><h3>Flywheel launcher + turret</h3><p>Two 6000 RPM motors drive a dual-flywheel launcher. At about 5 mm of compression, it could reach roughly 30 ft. A two-servo turret turns about 180° so the launcher can aim without turning the whole robot.</p></div>
+          </article>
+          <article>
+            <span class="case-index">C</span>
+            <div><h3>Transfer + basket</h3><p>A three-stage printed transfer extends more than 10 cm from an 8 cm retracted footprint. The basket mechanism uses a 3:1 servo reduction, giving it about 810° of rotation through the mechanism.</p></div>
+          </article>
+          <article>
+            <span class="case-index">D</span>
+            <div><h3>Odometry + vision</h3><p>Two-wheel odometry, motor encoders, and Limelight vision provide position and targeting information. Together, they give the robot more to work with than timed motor commands alone.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="case-section case-build" aria-labelledby="ftc-build-title">
+      <div class="case-section-heading case-build-heading">
+        <p class="case-eyebrow">02 / Build timeline</p>
+        <h2 id="ftc-build-title">Design, build, test, repeat.</h2>
+        <p>These are the main stages of the build. Dates can be added as we fill in the season timeline.</p>
+      </div>
+      <ol class="case-timeline">
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">01</span>
+          <h3>Design around the footprint</h3>
+          <p>Fit the drivetrain and scoring systems into a 439 × 425 × 440 mm robot, leaving room for structure, wiring, and service access.</p>
+          <span class="case-timeline-tag">Packaging</span>
+        </li>
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">02</span>
+          <h3>Make parts, then improve them</h3>
+          <p>Design more than 150 custom parts. 3D printing over 70% of them made it practical to revise mounts, guides, and mechanism interfaces as we tested.</p>
+          <span class="case-timeline-tag">CAD + fabrication</span>
+        </li>
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">03</span>
+          <h3>Bring the mechanisms together</h3>
+          <p>Integrate the mecanum drive, flywheel launcher, turret, transfer, basket, odometry, and Limelight into one serviceable robot.</p>
+          <span class="case-timeline-tag">Integration</span>
+        </li>
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">04</span>
+          <h3>Tune for competition</h3>
+          <p>Test mechanisms under match conditions, make changes between events, and keep iterating after the robot first worked.</p>
+          <span class="case-timeline-tag">Competition</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="case-section case-decisions">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">03 / Design choices</p>
+        <h2>Make each part earn its space.</h2>
+      </div>
+      <div class="case-tradeoffs">
+        <article><span>01</span><h3>Print for iteration</h3><p>We printed custom mounts, guides, brackets, and mechanism parts so we could move from CAD to a testable revision quickly. Load-bearing and wear surfaces still needed to be easy to replace.</p></article>
+        <article><span>02</span><h3>Choose motors by the job</h3><p>The drivetrain needed a useful balance of speed and torque; the launcher needed flywheel speed. Using different motors for those jobs made more sense than standardizing on one motor everywhere.</p></article>
+        <article><span>03</span><h3>Separate driving from aiming</h3><p>The turret lets the launcher turn independently of the chassis. That adds mechanical and control complexity, but means the robot can keep moving while it adjusts its shot.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section case-validation">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">04 / Testing + iteration</p>
+        <h2>Competition made the tradeoffs real.</h2>
+        <p>We kept refining the robot through competition. It finished in roughly the top half of regional competition, with plenty left to learn from each subsystem.</p>
+      </div>
+      <ol class="case-test-list">
+        <li><span>01</span><div><h3>Check the drivetrain</h3><p>Test straight-line speed, strafing, rotation, acceleration, and motor synchronization. Wheel alignment, symmetry, weight distribution, and interference all affect how a mecanum robot moves.</p></div></li>
+        <li><span>02</span><div><h3>Tune for repeatable shots</h3><p>Track flywheel speed, compression, ball position, launch angle, battery voltage, and motor temperature. The goal is a predictable shot, not just a maximum-range one.</p></div></li>
+        <li><span>03</span><div><h3>Refine the moving mechanisms</h3><p>Check turret range, accuracy, backlash, and response, then watch the transfer for friction, jams, and unreliable extension. Small geometry changes can make a big difference in a tightly packed robot.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="case-section case-gallery">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">05 / Robot details</p>
+        <h2>One robot, many subsystems.</h2>
+      </div>
+      <div class="detail-gallery">
+        <figure><img src="assets/Engineering/FTCDecoderBack.jpg" alt="Back view of the FTC robot showing the rear assembly"><figcaption>01 / Rear assembly</figcaption></figure>
+        <figure><img src="assets/Engineering/FTCTurretCAD.png" alt="CAD render of the rotating FTC turret"><figcaption>02 / Turret design</figcaption></figure>
+        <figure><img src="assets/Engineering/FTCPusherExplodedCAD.png" alt="Exploded CAD view of the printed transfer mechanism"><figcaption>03 / Transfer mechanism</figcaption></figure>
+        <figure><img src="assets/Engineering/FTCShooting.jpg" alt="FTC robot launching a game piece during a match"><figcaption>04 / Match testing</figcaption></figure>
+        <figure><img src="assets/Engineering/FTCSide.jpg" alt="Side view of the assembled FTC robot"><figcaption>05 / Side profile</figcaption></figure>
+        <figure><img src="assets/Engineering/FTCServoCloseup.jpg" alt="Close-up of a servo mechanism on the FTC robot"><figcaption>06 / Servo detail</figcaption></figure>
+      </div>
+    </section>
+  </main>
         </div>
       </div>
     </section>
   </main>
   <footer class="detail-footer"><a href="index.html#work">← Back to project timeline</a></footer>
 </div>
+<script src="script.js?v=2"></script>
 </body>
 </html>

@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Electric Vehicle with sprung odometry pod — William</title>
-<link rel="stylesheet" href="styles.css">
+<title>Electric Vehicle — William</title>
+<meta name="description" content="A compact Science Olympiad autonomous vehicle with a tripod chassis, belt-driven rear wheels, four-bar linkage, and spring-loaded odometry pod.">
+<link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
 <div class="wrap">
@@ -12,48 +13,147 @@
     <a href="index.html" class="brand">William</a>
     <a href="index.html#work" class="btn btn-secondary">Back to work</a>
   </header>
-  <main>
-    <section class="detail-top">
+  <main class="project-case">
+    <section class="case-hero detail-top">
       <a class="detail-back" href="index.html#work">← Project timeline</a>
-      <div class="detail-heading">
+      <div class="case-hero-heading">
         <div>
-          <p class="hero-eyebrow">2026 · Science Olympiad</p>
-          <h1>Electric Vehicle with sprung odometry pod</h1>
+          <p class="hero-eyebrow">Science Olympiad / Electric Vehicle</p>
+          <h1>Electric vehicle</h1>
         </div>
-        <p class="detail-lede">A competition vehicle using a spring-loaded measuring wheel and rotary magnetic encoder to maintain reliable distance readings.</p>
+        <p class="detail-lede">I wanted a vehicle that could stop at a known distance without relying on a guess. The tracking wheel and spring-loaded pod gave the Arduino a more direct measure of how far it actually moved.</p>
       </div>
-      <div class="detail-hero"><img src="assets/EVCADFull.png" alt="CAD render of the electric vehicle"></div>
-    </section>
-    <section class="detail-section">
-      <div class="detail-section-grid">
-        <h2>Build overview</h2>
-        <div class="detail-copy">
-          <p>The odometry pod keeps contact with the floor as the vehicle crosses small surface changes. That mechanical compliance protects the measurement signal from becoming a function of the venue instead of the actual distance traveled.</p>
-          <p>This is where you can add the event constraints, target distances, electrical system, and the calibration process used before a run.</p>
-        </div>
-      </div>
-    </section>
-    <section class="detail-section">
-      <div class="detail-section-grid">
-        <h2>Gallery</h2>
-        <div class="detail-gallery">
-          <figure><img src="assets/EVOdometryPod.png" alt="CAD render of the sprung odometry pod"><figcaption>Odometry pod</figcaption></figure>
-          <figure><img src="assets/MachinesCAD.png" alt="CAD assembly view of a mechanical system"><figcaption>Assembly study</figcaption></figure>
-        </div>
+      <figure class="case-hero-image">
+        <img src="assets/Engineering/EVCADFull.png" alt="CAD render of the Science Olympiad electric vehicle">
+        <figcaption><span>Science Olympiad / Electric Vehicle</span><span>Full vehicle CAD</span></figcaption>
+      </figure>
+      <div class="case-specs" aria-label="Vehicle features">
+        <div><strong>02</strong><span>driven rear wheels</span></div>
+        <div><strong>03</strong><span>chassis contact points</span></div>
+        <div><strong>01</strong><span>tracking wheel</span></div>
+        <div><strong>Arduino</strong><span>feedback control</span></div>
       </div>
     </section>
-    <section class="detail-section">
-      <div class="detail-section-grid">
-        <h2>Design notes</h2>
-        <div class="detail-notes">
-          <details open><summary>Components and architecture</summary><p>Add the drive motors, encoder, measuring wheel, spring, chassis parts, battery, and control electronics used in the vehicle.</p></details>
-          <details><summary>Design decisions</summary><p>Explain why the pod needs compliance, how you selected the encoder and wheel geometry, and how the design protects repeatability over different surfaces.</p></details>
-          <details><summary>Testing and next iteration</summary><p>Add calibration data, repeatability results, surface tests, and the next adjustment you would make.</p></details>
+
+    <section class="case-section case-architecture">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">01 / Vehicle systems</p>
+        <h2>Measure the movement, not just the motor turns.</h2>
+        <p>The rear wheels move the vehicle; a separate tracking wheel measures how far it actually goes. The Arduino uses that feedback to judge when to slow down and stop.</p>
+      </div>
+      <div class="case-architecture-grid">
+        <figure class="case-plan-image">
+          <img src="assets/Engineering/EVOdometryPod.png" alt="CAD render of the spring-loaded odometry pod and tracking wheel">
+          <figcaption>Spring-loaded tracking wheel / CAD</figcaption>
+        </figure>
+        <div class="case-systems">
+          <article>
+            <span class="case-index">A</span>
+            <div><h3>Three-point chassis</h3><p>Two independently driven rear wheels provide propulsion and turning. The front assembly is the third contact point, avoiding the uneven loading a rigid four-wheel chassis can get on a slightly irregular surface.</p></div>
+          </article>
+          <article>
+            <span class="case-index">B</span>
+            <div><h3>Four-bar front assembly</h3><p>The four-bar linkage, ground contact, and odometry pod share the front of the chassis. Their geometry has to work together while preserving room for the tracking wheel and enough ground clearance.</p></div>
+          </article>
+          <article>
+            <span class="case-index">C</span>
+            <div><h3>Spring-loaded odometry</h3><p>A spring keeps the tracking wheel against the floor as the chassis moves over small surface changes. An encoder reads the wheel, giving the Arduino a measurement of actual travel.</p></div>
+          </article>
+          <article>
+            <span class="case-index">D</span>
+            <div><h3>Feedback-based stopping</h3><p>The Arduino compares measured displacement with the target and uses the difference to control the motors. That is more dependable than assuming a timed motor command always covers the same distance.</p></div>
+          </article>
         </div>
+      </div>
+    </section>
+
+    <section class="case-section case-build" aria-labelledby="ev-build-title">
+      <div class="case-section-heading case-build-heading">
+        <p class="case-eyebrow">02 / Build timeline</p>
+        <h2 id="ev-build-title">From chassis to repeatable stops.</h2>
+        <p>The main steps in the build. Dates can be added once the event and testing history is filled in.</p>
+      </div>
+      <ol class="case-timeline">
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">01</span>
+          <h3>Design around the constraints</h3>
+          <p>Start with the limits on size, weight, and power, then make stopping accuracy the goal for the chassis and control system.</p>
+          <span class="case-timeline-tag">Requirements</span>
+        </li>
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">02</span>
+          <h3>Build the rolling chassis</h3>
+          <p>Use two belt-driven rear wheels for propulsion and turning, with a tripod layout to keep the support structure simple and light.</p>
+          <span class="case-timeline-tag">Chassis + drive</span>
+        </li>
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">03</span>
+          <h3>Fit the linkage and tracker</h3>
+          <p>Bring the four-bar linkage and spring-loaded tracking wheel together at the front, keeping the wheel in contact without adding unnecessary drag.</p>
+          <span class="case-timeline-tag">Mechanism + sensing</span>
+        </li>
+        <li>
+          <p class="case-timeline-date">Date TBD</p>
+          <span class="case-timeline-number">04</span>
+          <h3>Calibrate, run, repeat</h3>
+          <p>Compare encoder distance with known travel, check contact over surface changes, and tune the Arduino's stopping response across repeated runs.</p>
+          <span class="case-timeline-tag">Testing</span>
+        </li>
+      </ol>
+    </section>
+
+    <section class="case-section case-decisions">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">03 / Design choices</p>
+        <h2>Build around what the vehicle needs to measure.</h2>
+      </div>
+      <div class="case-tradeoffs">
+        <article><span>01</span><h3>Three points on the ground</h3><p>The tripod layout saves hardware and weight, and avoids asking four wheels to stay loaded evenly on every surface. It also lets the front structure do more than one job.</p></article>
+        <article><span>02</span><h3>A wheel just for measuring</h3><p>The drive wheels are for propulsion; the tracking wheel is for distance. Measuring actual ground travel makes stopping less sensitive to drivetrain slip and changing motor performance.</p></article>
+        <article><span>03</span><h3>Spring, not a rigid mount</h3><p>The spring helps the tracking wheel stay on the floor over small bumps. It needs enough force for reliable contact, but not so much that it adds drag or interferes with the vehicle.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section case-validation">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">04 / Testing + next iteration</p>
+        <h2>Make each run more predictable.</h2>
+        <p>I focused on repeatability: check what the odometry measured against what the vehicle actually did, then work out whether the error came from the pod, drivetrain, or control.</p>
+      </div>
+      <ol class="case-test-list">
+        <li><span>01</span><div><h3>Calibrate the tracking wheel</h3><p>Move the vehicle over known distances and compare the encoder estimate with the real measurement. Use repeated runs to tune wheel diameter, encoder resolution, and distance per rotation.</p></div></li>
+        <li><span>02</span><div><h3>Check ground contact</h3><p>Watch the tracking wheel during acceleration, braking, turns, and small surface changes. Adjust the spring so it follows the floor without adding excessive friction.</p></div></li>
+        <li><span>03</span><div><h3>Test the complete stop</h3><p>Run straight and turning paths, check belt behavior and motor synchronization, then compare the target distance with the final stop over multiple runs.</p></div></li>
+      </ol>
+      <p class="case-next-step">For another iteration, I’d look at reducing friction in the pod, refining the linkage, and improving the stopping algorithm.</p>
+    </section>
+
+    <section class="case-section case-gallery">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">05 / Build details</p>
+        <h2>The pod and the full vehicle.</h2>
+      </div>
+      <div class="detail-gallery">
+        <figure><img src="assets/Engineering/EVOdometryPod.png" alt="CAD render of the spring-loaded odometry pod"><figcaption>01 / Odometry pod</figcaption></figure>
+        <figure><img src="assets/Engineering/EVandRobotTourImage.jpg" alt="Science Olympiad electric vehicle and Robot Tour builds"><figcaption>02 / Vehicle builds</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="case-section case-video-section">
+      <div class="case-section-heading">
+        <p class="case-eyebrow">06 / In motion</p>
+        <h2>See the vehicle run.</h2>
+      </div>
+      <div class="project-video">
+        <iframe src="https://drive.google.com/file/d/1rCsXXqNx6bPjojBzbVnp78RNSXPHgU3l/preview" title="Science Olympiad electric vehicle demonstration" allow="autoplay; fullscreen"></iframe>
       </div>
     </section>
   </main>
   <footer class="detail-footer"><a href="index.html#work">← Back to project timeline</a></footer>
 </div>
+<script src="script.js?v=2"></script>
 </body>
 </html>
