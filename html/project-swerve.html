@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Three-wheel swerve drivetrain — William</title>
+    <meta
+      name="description"
+      content="Design and assembly of a three-module swerve drivetrain, including module mechanics, electrical integration, and prototype testing."
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <script src="../js/swerve-viewer-config.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site">
+        <a href="index.html" class="brand">William</a>
+        <a href="index.html#work" class="btn btn-secondary">Back to work</a>
+      </header>
+      <main class="swerve-case">
+        <section class="swerve-overview" aria-labelledby="swerve-title">
+          <a class="detail-back" href="index.html#work">← Project timeline</a>
+          <div class="swerve-overview-copy">
+            <div>
+              <p class="hero-eyebrow">Personal robotics project / Operational prototype</p>
+              <h1 id="swerve-title">Three-wheel swerve drivetrain</h1>
+            </div>
+            <div>
+              <p class="swerve-lede">
+                I designed and built a three-module swerve drivetrain to study independent wheel
+                drive and steering. The prototype can travel straight, move sideways, and rotate in
+                place. I plan to use it as a platform for depth-camera navigation.
+              </p>
+              <p class="swerve-lede">
+                My work included researching coaxial swerve mechanisms, designing the modules,
+                selecting electronics, and assembling the chassis and wiring.
+              </p>
+            </div>
+          </div>
+          <figure class="swerve-hero-photo">
+            <img
+              src="../assets/Engineering/SwerveTop.jpeg"
+              alt="Overhead photograph of my assembled three-module swerve drivetrain, with its motors, controllers, and custom wiring visible"
+            />
+            <figcaption>
+              <span>Working prototype / assembled drivetrain</span><span>Current build</span>
+            </figcaption>
+          </figure>
+          <div class="swerve-status-row" aria-label="Current project status">
+            <span><strong>Status</strong> Assembled and operational</span>
+            <span><strong>Modules</strong> Three independently steerable pods</span>
+            <span><strong>Demonstrated</strong> Straight, sideways, and turning motion</span>
+          </div>
+        </section>
+
+        <section class="swerve-section" aria-labelledby="swerve-motion-title">
+          <div class="swerve-section-heading">
+            <p class="case-eyebrow">01</p>
+            <h2 id="swerve-motion-title">Movement overview</h2>
+            <p>
+              A drive motor spins each wheel to propel the robot. A separate steering motor turns
+              each module to point its wheel in a chosen direction.
+            </p>
+          </div>
+          <div class="swerve-detail-list">
+            <article>
+              <h3>Wheel drive</h3>
+              <p>
+                Each drive motor controls its wheel’s speed and direction of rotation, providing
+                the force that moves the chassis.
+              </p>
+            </article>
+            <article>
+              <h3>Module steering</h3>
+              <p>
+                A separate steering motor rotates each module about its steering axis to set the
+                wheel’s travel direction.
+              </p>
+            </article>
+            <article>
+              <h3>Coordinated motion</h3>
+              <p>
+                Coordinating the three wheel speeds and steering angles allows the chassis to
+                translate or rotate. For sideways travel, the wheels align across the chassis;
+                for rotation in place, they align tangent to circles about the chassis center.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="swerve-section" aria-labelledby="swerve-decisions-title">
+          <div class="swerve-section-heading">
+            <p class="case-eyebrow">02</p>
+            <h2 id="swerve-decisions-title">Design decisions</h2>
+            <p>
+              Component cost and space for future attachments guided the module count, motor
+              selection, and chassis layout.
+            </p>
+          </div>
+          <div class="swerve-detail-list">
+            <article>
+              <h3>Three modules instead of four</h3>
+              <p>
+                Three modules reduce the number of motors, drivers, and mechanical parts compared
+                with a four-module layout. The control calculations must account for the position
+                of each module on the chassis.
+              </p>
+            </article>
+            <article>
+              <h3>Brushed DC motors</h3>
+              <p>
+                I selected brushed DC motors to reduce the cost of the prototype. Production cost
+                and manufacturing requirements have not been evaluated.
+              </p>
+            </article>
+            <article>
+              <h3>Chassis layout</h3>
+              <p>
+                I kept the drivetrain compact and allowed space for a future arm and other
+                attachments. The arm has not been built yet.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="swerve-section" aria-labelledby="swerve-mechanical-title">
+          <div class="swerve-section-heading">
+            <p class="case-eyebrow">03</p>
+            <h2 id="swerve-mechanical-title">Mechanical design</h2>
+            <p>
+              I developed a coaxial module with an internal steering disk and an adjustable bearing
+              stack to control axial movement.
+            </p>
+          </div>
+          <div class="swerve-detail-list">
+            <article>
+              <h3>Steering disk</h3>
+              <p>
+                The internal disk carries the steering-belt teeth. Flanged bearings contact its
+                two axial faces to constrain movement along the steering axis.
+              </p>
+            </article>
+            <article>
+              <h3>Bearing preload</h3>
+              <p>
+                The bearings mount on a standoff slightly shorter than the disk’s axial thickness.
+                Tightening the fasteners draws the assembly together and adjusts the bearing
+                preload. The standoff length determines the available closure.
+              </p>
+            </article>
+            <article>
+              <h3>Clearance and friction</h3>
+              <p>
+                The preload should limit axial play while allowing the module to steer freely.
+                Excessive preload can increase friction or cause binding. Axial play, friction,
+                preload, and wear have not yet been measured.
+              </p>
+            </article>
+          </div>
+          <div class="swerve-mechanical-figures">
+            <figure class="swerve-cad-figure">
+              <img
+                src="../assets/Engineering/SwervePodCAD.png"
+                alt="Side CAD view of my coaxial swerve pod, showing its wheel, internal steering mechanism, plates, bearings, and standoffs"
+              />
+              <figcaption>
+                <span>Module side view / CAD</span>
+              </figcaption>
+            </figure>
+            <figure class="swerve-cad-figure">
+              <img
+                src="../assets/Engineering/Swerve_BearingStack.png"
+                width="546"
+                height="454"
+                alt="Exploded CAD render of the swerve module bearing stack, showing the toothed steering disk, flanged bearings, central standoff, washers, and fasteners"
+              />
+              <figcaption>
+                <span>Bearing stack / exploded CAD view</span>
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="swerve-section" aria-labelledby="swerve-electrical-title">
+          <div class="swerve-section-heading">
+            <p class="case-eyebrow">04</p>
+            <h2 id="swerve-electrical-title">Electrical and control integration</h2>
+            <p>
+              Unlike my earlier builds with packaged goBILDA and REV electronics, this drivetrain
+              required individual component selection, power distribution, and a custom wiring
+              harness.
+            </p>
+          </div>
+          <div class="swerve-electrical-layout">
+            <div class="swerve-power-architecture" aria-label="Power architecture overview">
+              <div class="swerve-power-source">
+                <span>Battery source</span><strong>3S LiPo</strong>
+              </div>
+              <div class="swerve-power-branches">
+                <article class="swerve-power-branch">
+                  <span class="swerve-card-index">Drive power</span>
+                  <h3>3 × MDD10A</h3>
+                  <p>One dual-channel motor driver per module.</p>
+                </article>
+                <article class="swerve-power-branch">
+                  <span class="swerve-card-index">Buck branch 01</span>
+                  <h3>5.1 V / Raspberry Pi 4B</h3>
+                  <p>Dedicated converter output for the Pi.</p>
+                </article>
+                <article class="swerve-power-branch">
+                  <span class="swerve-card-index">Buck branch 02</span>
+                  <h3>5 V / servos</h3>
+                  <p>Separate converter output for servo power.</p>
+                </article>
+                <article class="swerve-power-branch">
+                  <span class="swerve-card-index">Buck branch 03</span>
+                  <h3>3.3 V / sensors</h3>
+                  <p>Separate converter output for sensor power.</p>
+                </article>
+              </div>
+              <div class="swerve-level-converter">
+                <strong>5 V ↔ 3.3 V logic-level converter</strong
+                ><span>For signals between the two logic-voltage domains</span>
+              </div>
+              <p class="swerve-diagram-note">
+                Power distribution overview; individual wiring connections are omitted.
+              </p>
+            </div>
+            <div class="swerve-control-column">
+              <div class="swerve-controller-stack">
+                <span class="swerve-card-index">Controller hierarchy</span>
+                <div class="swerve-controller-node">
+                  <strong>Raspberry Pi 4B</strong><span>Host computer</span>
+                </div>
+                <div class="swerve-controller-link">
+                  Host and subordinate controller
+                </div>
+                <div class="swerve-controller-node">
+                  <strong>RP2040</strong><span>Subordinate controller</span>
+                </div>
+              </div>
+              <p class="swerve-inference">
+                The controller task split and communication interface still need to be documented.
+              </p>
+              <div class="swerve-wiring-note">
+                <h3>Wiring harness</h3>
+                <p>
+                  As the build grew, I moved away from solderless breadboards for the
+                  current-carrying wiring. I assembled the prototype harness with lever connectors
+                  and soldered connections instead.
+                </p>
+              </div>
+            </div>
+          </div>
+          <aside class="swerve-debug-story" aria-labelledby="swerve-usbc-title">
+            <div>
+              <h3 id="swerve-usbc-title">USB-C power troubleshooting</h3>
+            </div>
+            <div>
+              <p>
+                A USB-C pigtail initially failed to power the Pi. Replacing it with a USB-C
+                breakout and adding 10 kΩ pull-up resistors on CC1 and CC2 restored power.
+              </p>
+              <p>
+                The resistor connections still need verification; the cause of the original
+                failure remains unconfirmed.
+              </p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="swerve-section swerve-results" aria-labelledby="swerve-results-title">
+          <div class="swerve-section-heading">
+            <p class="case-eyebrow">05</p>
+            <h2 id="swerve-results-title">Testing and next steps</h2>
+            <p>
+              Initial tests confirm basic movement. Steering accuracy, positioning error, and
+              payload capacity still require measurement.
+            </p>
+          </div>
+          <div class="swerve-results-grid">
+            <article class="swerve-result-card">
+              <span class="swerve-result-label">Demonstrated</span>
+              <h3>Operational checks</h3>
+              <ul>
+                <li>Each module can steer, and each wheel can drive.</li>
+                <li>The robot drives straight.</li>
+                <li>The robot moves sideways.</li>
+                <li>The robot rotates in place.</li>
+              </ul>
+            </article>
+            <article class="swerve-result-card swerve-result-pending">
+              <span class="swerve-result-label">Pending</span>
+              <h3>Performance measurements</h3>
+              <ul>
+                <li>Steering accuracy has not been quantified.</li>
+                <li>Positioning error has not been tested.</li>
+                <li>Payload capacity has not been tested.</li>
+                <li>The IMU is awaiting delivery; it is not installed.</li>
+              </ul>
+            </article>
+          </div>
+          <div class="swerve-detail-list swerve-follow-up">
+            <article>
+              <h3>Controls and arm</h3>
+              <p>
+                Next, I plan to finalize the initial control software and construct the arm, then
+                test handling and payload capacity with the arm installed.
+              </p>
+            </article>
+            <article>
+              <h3>Navigation and electronics</h3>
+              <p>
+                Longer-term plans include depth-camera navigation and a custom PCB. The intended
+                application is transporting payloads between locations.
+              </p>
+            </article>
+          </div>
+          <div class="swerve-test-plan">
+            <h3>Test plan</h3>
+            <ul>
+              <li>Compare commanded and measured steering angles across repeated moves.</li>
+              <li>Record straight, sideways, and rotational paths against a marked floor grid.</li>
+              <li>
+                After the arm is built, increase payload in controlled steps and record the load and
+                test conditions.
+              </li>
+            </ul>
+          </div>
+          <div class="swerve-interactive">
+            <div class="swerve-interactive-heading">
+              <p class="case-eyebrow">Interactive CAD</p>
+              <h3>Drivetrain assembly</h3>
+              <p>
+                Load the model to replace the preview, then drag to rotate it. Scroll or pinch to
+                zoom.
+              </p>
+            </div>
+            <figure class="swerve-model">
+              <!-- The CAD export uses -Z as up; align it with the viewer's +Y orbit axis. -->
+              <model-viewer
+                id="swerve-model"
+                class="swerve-model-viewer"
+                data-src="../assets/Swerve_Assembly.web.glb"
+                poster="../assets/Engineering/SwerveModelPreview.png"
+                alt="Interactive 3D CAD model of the three-module swerve drivetrain"
+                orientation="0deg 90deg 0deg"
+                camera-controls
+                interaction-prompt="none"
+                disable-tap
+                shadow-intensity="0"
+                exposure="0.65"
+                touch-action="pan-y"
+                tabindex="0"
+                loading="eager"
+              ></model-viewer>
+              <figcaption>
+                <span>Three-module swerve drivetrain / CAD assembly</span
+                ><span>Drag to rotate</span>
+              </figcaption>
+            </figure>
+            <div class="swerve-model-actions">
+              <button class="btn btn-primary" id="load-swerve-model" type="button">
+                Load interactive model
+              </button>
+              <p class="swerve-model-note">Optimized 3D preview / about 5.4 MB.</p>
+            </div>
+            <p
+              class="swerve-model-status"
+              id="swerve-model-status"
+              role="status"
+              aria-live="polite"
+            >
+              The model only downloads when you choose to load it.
+            </p>
+          </div>
+        </section>
+      </main>
+      <footer class="detail-footer">
+        <a href="index.html#work">← Back to project timeline</a>
+      </footer>
+    </div>
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
+    <script type="module" src="../script.js"></script>
+    <script type="module" src="../js/swerve-model.js"></script>
+  </body>
+</html>

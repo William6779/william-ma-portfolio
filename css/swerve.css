@@ -1,0 +1,483 @@
+.swerve-case {
+  padding-bottom: 24px;
+}
+.swerve-overview {
+  padding: 40px 0 64px;
+}
+.swerve-overview-copy {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: end;
+  margin-top: 26px;
+}
+.swerve-overview-copy h1 {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(52px, 7vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+.swerve-lede {
+  max-width: 62ch;
+  margin: 0 0 14px;
+  color: var(--color-neutral-800);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.swerve-lede:last-child {
+  margin-bottom: 0;
+}
+.swerve-hero-photo {
+  margin: 40px 0 0;
+}
+.swerve-hero-photo img {
+  display: block;
+  width: 100%;
+  height: clamp(300px, 56vw, 650px);
+  object-fit: contain;
+  background: #101010;
+  border-bottom: 3px solid var(--color-accent);
+}
+.swerve-hero-photo figcaption,
+.swerve-cad-figure figcaption,
+.swerve-model figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 10px;
+  color: var(--color-neutral-600);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.swerve-status-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 28px;
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+.swerve-status-row span {
+  padding: 16px 18px;
+  border-right: 1px solid var(--color-divider);
+  color: var(--color-neutral-700);
+  font-size: 13px;
+}
+.swerve-status-row span:first-child {
+  padding-left: 0;
+}
+.swerve-status-row span:last-child {
+  border-right: 0;
+}
+.swerve-status-row strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--color-accent-700);
+  font-size: 10px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.swerve-section {
+  padding: 72px 0;
+  border-top: 1px solid var(--color-divider);
+}
+.swerve-section-heading {
+  max-width: 760px;
+  margin-bottom: 36px;
+}
+.swerve-section-heading h2 {
+  max-width: 24ch;
+  margin: 0 0 14px;
+  font-size: clamp(34px, 4vw, 52px);
+}
+.swerve-section-heading > p:last-child {
+  max-width: 66ch;
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: 16px;
+  line-height: 1.65;
+}
+.swerve-detail-list {
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+.swerve-detail-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  gap: 32px;
+  padding: 24px 0;
+}
+.swerve-detail-list article + article {
+  border-top: 1px solid var(--color-divider);
+}
+.swerve-detail-list h3 {
+  margin: 0;
+  font-size: 21px;
+}
+.swerve-wiring-note h3,
+.swerve-result-card h3,
+.swerve-debug-story h3 {
+  margin: 8px 0 10px;
+  font-size: 21px;
+}
+.swerve-detail-list p,
+.swerve-debug-story p {
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.swerve-card-index {
+  display: block;
+  color: var(--color-accent-700);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+.swerve-mechanical-figures {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: 24px;
+  align-items: stretch;
+  margin-top: 32px;
+}
+.swerve-cad-figure {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: #ffffff;
+}
+.swerve-cad-figure img {
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  height: 300px;
+  object-fit: contain;
+}
+.swerve-cad-figure figcaption {
+  padding: 10px 14px;
+  background: var(--color-bg);
+  color: var(--color-neutral-600);
+}
+.swerve-electrical-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 32px;
+  align-items: start;
+}
+.swerve-power-architecture {
+  padding: 22px;
+  border: 1px solid var(--color-divider);
+  background: color-mix(in srgb, var(--color-text) 3%, var(--color-bg));
+}
+.swerve-power-source {
+  position: relative;
+  width: min(100%, 300px);
+  margin: 0 auto 44px;
+  padding: 14px 18px;
+  border: 1px solid var(--color-accent);
+  text-align: center;
+}
+.swerve-power-source::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  height: 29px;
+  border-left: 1px solid var(--color-accent);
+  content: "";
+}
+.swerve-power-source span,
+.swerve-power-source strong {
+  display: block;
+}
+.swerve-power-source span {
+  margin-bottom: 5px;
+  color: var(--color-neutral-600);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.swerve-power-source strong {
+  font-size: 19px;
+}
+.swerve-power-branches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.swerve-power-branch {
+  min-height: 118px;
+  padding: 14px;
+  border: 1px solid var(--color-divider);
+  background: var(--color-bg);
+}
+.swerve-power-branch:first-child {
+  grid-column: 1 / -1;
+  min-height: auto;
+}
+.swerve-power-branch h3 {
+  margin: 8px 0 5px;
+  font-size: 17px;
+}
+.swerve-power-branch p {
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.swerve-level-converter {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 13px 14px;
+  border-left: 3px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg));
+  font-size: 13px;
+}
+.swerve-level-converter span {
+  color: var(--color-neutral-700);
+  font-size: 12px;
+}
+.swerve-diagram-note {
+  margin: 14px 0 0;
+  color: var(--color-neutral-600);
+  font-size: 11px;
+  line-height: 1.55;
+}
+.swerve-control-column {
+  display: grid;
+  gap: 18px;
+}
+.swerve-controller-stack {
+  padding: 20px;
+  border: 1px solid var(--color-divider);
+}
+.swerve-controller-node {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 13px;
+  background: color-mix(in srgb, var(--color-text) 5%, var(--color-bg));
+}
+.swerve-controller-node span {
+  color: var(--color-neutral-600);
+  font-size: 12px;
+}
+.swerve-controller-link {
+  margin: 5px 0 -5px;
+  color: var(--color-neutral-600);
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+}
+.swerve-inference {
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.swerve-inference strong {
+  color: var(--color-neutral-900);
+}
+.swerve-wiring-note {
+  padding: 18px 0 0;
+  border-top: 1px solid var(--color-divider);
+}
+.swerve-wiring-note p {
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.swerve-debug-story {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 32px;
+  margin-top: 34px;
+  padding: 24px;
+  border-left: 3px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
+}
+.swerve-debug-story h3 {
+  max-width: 22ch;
+  margin-top: 0;
+}
+.swerve-debug-story p + p {
+  margin-top: 12px;
+}
+.swerve-results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.swerve-result-card {
+  padding: 22px;
+  border: 1px solid var(--color-divider);
+}
+.swerve-result-label {
+  display: inline-block;
+  padding: 5px 8px;
+  background: color-mix(in srgb, var(--color-accent) 18%, var(--color-bg));
+  color: var(--color-accent-700);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.swerve-result-card h3 {
+  margin: 14px 0 12px;
+  font-size: 21px;
+}
+.swerve-result-card ul,
+.swerve-test-plan ul {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--color-neutral-700);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.swerve-result-card li::marker,
+.swerve-test-plan li::marker {
+  color: var(--color-accent);
+}
+.swerve-result-pending .swerve-result-label {
+  background: color-mix(in srgb, var(--color-text) 9%, var(--color-bg));
+  color: var(--color-neutral-700);
+}
+.swerve-follow-up {
+  margin-top: 30px;
+}
+.swerve-test-plan {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  gap: 32px;
+  margin-top: 28px;
+}
+.swerve-test-plan h3 {
+  margin: 0;
+  font-size: 17px;
+}
+.swerve-interactive {
+  margin-top: 68px;
+  padding-top: 44px;
+  border-top: 1px solid var(--color-divider);
+}
+.swerve-interactive-heading {
+  margin-bottom: 24px;
+}
+.swerve-interactive-heading h3 {
+  margin: 0 0 8px;
+  font-size: clamp(26px, 3vw, 36px);
+}
+.swerve-interactive-heading > p:last-child {
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: 14px;
+}
+.swerve-model {
+  margin: 0;
+}
+.swerve-model-viewer {
+  display: block;
+  width: 100%;
+  height: clamp(280px, 52vw, 600px);
+  background: var(--color-bg);
+  --poster-color: var(--color-bg);
+}
+.swerve-model figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 10px;
+  color: var(--color-neutral-600);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.swerve-model-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+.swerve-model-note,
+.swerve-model-status {
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: 13px;
+}
+.swerve-model-status {
+  margin-top: 10px;
+  min-height: 1.5em;
+}
+
+/* Stack the Swerve layouts at the intended mobile breakpoint. */
+@media (max-width: 700px) {
+  .swerve-overview-copy,
+  .swerve-mechanical-figures,
+  .swerve-detail-list article,
+  .swerve-electrical-layout,
+  .swerve-debug-story,
+  .swerve-results-grid,
+  .swerve-test-plan {
+    grid-template-columns: 1fr;
+  }
+  .swerve-overview-copy {
+    gap: 20px;
+  }
+  .swerve-overview-copy h1 {
+    font-size: clamp(46px, 12vw, 64px);
+  }
+  .swerve-status-row {
+    grid-template-columns: 1fr;
+  }
+  .swerve-status-row span,
+  .swerve-status-row span:first-child {
+    padding: 12px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .swerve-status-row span:last-child {
+    border-bottom: 0;
+  }
+  .swerve-detail-list article {
+    gap: 12px;
+    padding: 20px 0;
+  }
+  .swerve-cad-figure img {
+    height: 420px;
+  }
+  .swerve-debug-story {
+    gap: 14px;
+    padding: 20px;
+  }
+  .swerve-test-plan {
+    gap: 14px;
+  }
+  .swerve-power-branches {
+    grid-template-columns: 1fr;
+  }
+  .swerve-power-branch:first-child {
+    grid-column: auto;
+  }
+  .swerve-controller-node {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .swerve-hero-photo img {
+    height: 360px;
+  }
+  .swerve-hero-photo figcaption,
+  .swerve-cad-figure figcaption,
+  .swerve-model figcaption {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

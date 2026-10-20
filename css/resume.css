@@ -1,0 +1,50 @@
+.resume-page {
+  padding-bottom: 48px;
+}
+.resume-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.resume-viewer-shell {
+  width: min(100%, 1500px);
+  margin: 0 auto;
+  border: 3px solid var(--color-accent);
+  background: var(--color-surface);
+  padding: 12px;
+}
+.resume-viewer-shell iframe {
+  width: 100%;
+  min-height: calc(100vh - 220px);
+  max-height: 1400px;
+  border: 0;
+  background: #ffffff;
+  display: block;
+}
+.resume-caption {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--color-neutral-700);
+}
+@media (max-width: 700px) {
+  .resume-header {
+    align-items: flex-start;
+  }
+  .resume-viewer-shell iframe {
+    min-height: 80vh;
+  }
+}
+
+.resume-title {
+  font-size: clamp(42px, 5vw, 72px);
+  margin: 0;
+}
