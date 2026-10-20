@@ -89,9 +89,9 @@ def main():
     pages = {}
     references = {}
     errors = []
-    sources = sorted(HTML_ROOT.rglob("*.html"))
-    if not sources or not (HTML_ROOT / "index.html").is_file():
-        errors.append("html/index.html: homepage is missing")
+    sources = sorted([*ROOT.glob("*.html"), *HTML_ROOT.rglob("*.html")])
+    if not (ROOT / "index.html").is_file():
+        errors.append("index.html: homepage is missing")
     for source in sources:
         parser = PageParser()
         parser.feed(source.read_text(encoding="utf-8"))

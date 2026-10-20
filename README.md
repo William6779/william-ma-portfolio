@@ -10,12 +10,11 @@ From the project folder, start the local server:
 python -m http.server 8000
 ```
 
-Then open http://localhost:8000/html/ in your browser.
+Then open http://localhost:8000/ in your browser.
 
-All HTML pages live in `html/`, including the homepage at `html/index.html`.
+The homepage is `index.html` in the project root; other HTML pages live in `html/`.
 Keep serving the project folder so the shared CSS, JavaScript, and assets remain
-accessible. The site root `/` has no index page; a hosting redirect from `/` to
-`/html/` is needed if you want visitors to land on the homepage from the root URL.
+accessible. The site root `/` serves the homepage directly.
 
 Use the local server rather than opening HTML files directly: the JavaScript entry
 point uses native browser modules.
@@ -24,7 +23,7 @@ point uses native browser modules.
 
 | Change                                                  | File                                                    |
 | ------------------------------------------------------- | ------------------------------------------------------- |
-| Home page content and project timeline                  | `html/index.html`                                       |
+| Home page content and project timeline                  | `index.html`                                            |
 | Engineering project content                             | `html/project-*.html`                                   |
 | Artwork, photography, and collection links              | `html/art.html`, `html/photo.html`, `html/gallery.html` |
 | Resume page and PDF                                     | `html/resume.html`, `assets/William_Ma_Resume.pdf`      |
@@ -49,8 +48,11 @@ the configuration script must run before the external model-viewer module.
 
 To add a project, copy the closest `html/project-*.html` layout into `html/`, update
 its content and image descriptions, and add a link in the home page timeline.
-Links between pages use filenames such as `project-swerve.html`; shared resources
-use paths such as `../styles.css`, `../script.js`, and `../assets/Engineering/...`.
+Links between pages in `html/` use filenames such as `project-swerve.html`; links
+back to the homepage use `../index.html`. These pages load shared resources with
+paths such as `../styles.css`, `../script.js`, and `../assets/Engineering/...`.
+The root homepage uses `html/` for page links and `styles.css`, `script.js`, and
+`assets/Engineering/...` for shared resources.
 Pages keep their
 navigation in HTML; update each relevant header when adding a navigation item.
 
