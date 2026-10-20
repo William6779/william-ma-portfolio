@@ -1,1 +1,3 @@
-Swerve_Assembly.gltf
+# Ignore source glTF models and compressed copies throughout assets.
+/assets/**/*.gltf
+/assets/**/*.gltf.gz

@@ -34,16 +34,17 @@ point uses native browser modules.
 | Home page layout                                        | `css/home.css`                                          |
 | Shared project layouts and image galleries              | `css/projects.css`                                      |
 | Swerve layout and diagrams                              | `css/swerve.css`                                        |
+| FTC layout and text rows                                | `css/ftc.css`                                           |
 | Resume and image preview dialog styles                  | `css/resume.css`, `css/lightbox.css`                    |
 | Clock, form feedback, scroll reveal, and image previews | Corresponding files in `js/`                            |
-| Swerve viewer setup and loading                         | `js/swerve-viewer-config.js`, `js/swerve-model.js`      |
+| Robot viewer setup and loading                         | `js/robot-viewer-config.js`, `js/robot-model.js`, `js/ftc-model.js`, `js/swerve-model.js` |
 
 `styles.css` imports the stylesheets in cascade order and loads the font once.
 Responsive rules live with their component or page styles. Keep new styles in the
 appropriate file and use named classes instead of inline styles.
 
 `script.js` initializes shared behaviors. Each initializer returns immediately on
-pages without that feature. The Swerve page loads its viewer scripts separately;
+pages without that feature. The FTC and Swerve pages load their viewer scripts separately;
 the configuration script must run before the external model-viewer module.
 
 To add a project, copy the closest `html/project-*.html` layout into `html/`, update
@@ -72,7 +73,7 @@ This checks HTML tag nesting, duplicate IDs, local files and anchors, CSS import
 and JavaScript imports. It also checks filename case for deployment to
 case-sensitive hosts. It does not fetch external services or render the pages.
 After changing interactions, check image previews with the mouse and keyboard,
-the contact form feedback, and the Swerve load/retry controls in a browser. After
+the contact form feedback, and the FTC and Swerve load/retry controls in a browser. After
 changing layout, check both desktop and mobile widths.
 
 ## Swerve 3D preview
@@ -113,3 +114,38 @@ offscreen models through model-viewer's built-in behavior.
 from meshoptimizer v0.22, which supports the `EXT_meshopt_compression` format
 emitted by `-cc`. It is served locally with its MIT license. Keep this decoder
 configured before model-viewer initializes; it is required to load the GLB.
+
+## FTC 3D preview
+
+The FTC page loads `assets/FTC_Robot3DModel.web.glb` after the visitor clicks
+**Load interactive model**, using the same decoder, loading/retry controls, and
+rendering settings as the Swerve preview. The original `FTC_Robot3DModel.gltf`
+stays local and is excluded from Git. Only the optimized GLB is needed for hosting.
+
+This export uses positive X as up. The viewer's `orientation="90deg 0deg 0deg"`
+aligns it with positive Y so the robot stays upright while orbiting.
+
+The original contains Draco-compressed geometry, which gltfpack 1.3 cannot read
+directly. Decode it into temporary files first, then apply the same gltfpack
+settings used for Swerve. The Python packages are conversion tools only; the
+website still requires no package installation or build step.
+
+```powershell
+python -m pip install DracoPy==2.2.0 numpy
+python scripts/decode_draco_gltf.py assets/FTC_Robot3DModel.gltf "$env:TEMP/ftc-decoded.gltf"
+gltfpack -i "$env:TEMP/ftc-decoded.gltf" -o assets/FTC_Robot3DModel.web.glb -si 0.15 -se 0.001 -sp -mm -cc
+```
+
+The converter writes `ftc-decoded.gltf` and `ftc-decoded.bin` together in the
+temporary directory and leaves the source untouched. Keep both intermediate
+files until gltfpack finishes.
+
+| Metric                                       | Original export | Web preview |
+| -------------------------------------------- | --------------: | ----------: |
+| File size (decimal MB)                        |          496.32 |       36.43 |
+| Estimated draw calls                         |         219,587 |          48 |
+| Rendered triangles, including repeated parts |      62,925,648 |   9,444,595 |
+
+This reduces file size by 92.7%. Counts are from the scene data and gltfpack's
+report, not browser frame-rate measurements. As with Swerve, the simplified GLB
+is for display; retain the original export for engineering inspection.

@@ -1,0 +1,124 @@
+/* FTC uses the same type sizes, section spacing, and text rows as Swerve. */
+.ftc-case .case-hero {
+  padding: 40px 0 64px;
+}
+.ftc-case .case-hero-heading {
+  grid-template-columns: 1.05fr 0.95fr;
+  margin-top: 26px;
+}
+.ftc-case .case-hero-heading h1 {
+  letter-spacing: -0.03em;
+}
+.ftc-overview-copy p {
+  max-width: 62ch;
+  margin: 0 0 14px;
+  color: var(--color-neutral-800);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.ftc-overview-copy p:last-child {
+  margin-bottom: 0;
+}
+.ftc-case .case-hero-image {
+  margin-top: 40px;
+}
+.ftc-case .case-hero-image img {
+  height: clamp(300px, 56vw, 650px);
+  aspect-ratio: auto;
+  padding: 0;
+}
+.ftc-case .case-specs {
+  margin-top: 28px;
+}
+.ftc-case .case-specs div {
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.ftc-case .case-specs strong {
+  font-size: 18px;
+}
+.ftc-case .case-section-heading {
+  max-width: 760px;
+}
+.ftc-case .case-section-heading h2 {
+  max-width: 24ch;
+}
+.ftc-case .case-section-heading > p:last-child {
+  max-width: 66ch;
+}
+.ftc-detail-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+.ftc-detail-list > article,
+.ftc-detail-list > li {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  gap: 32px;
+  padding: 24px 0;
+}
+.ftc-detail-list > :nth-child(n + 2) {
+  border-top: 1px solid var(--color-divider);
+}
+.ftc-detail-list h3 {
+  margin: 0;
+  font-size: 21px;
+}
+.ftc-detail-list p {
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.ftc-cad-figure {
+  margin: 32px 0 0;
+}
+.ftc-cad-figure img {
+  display: block;
+  width: 100%;
+  height: clamp(300px, 40vw, 480px);
+  object-fit: contain;
+  background: #ffffff;
+}
+.ftc-cad-figure figcaption {
+  padding-top: 10px;
+  color: var(--color-neutral-600);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  .ftc-case .case-hero-heading,
+  .ftc-detail-list > article,
+  .ftc-detail-list > li {
+    grid-template-columns: 1fr;
+  }
+  .ftc-case .case-hero-heading {
+    gap: 20px;
+  }
+  .ftc-case .case-hero-heading h1 {
+    font-size: clamp(46px, 12vw, 64px);
+  }
+  .ftc-case .case-hero-image img {
+    height: 360px;
+  }
+  .ftc-case .case-section {
+    padding: 72px 0;
+  }
+  .ftc-detail-list > article,
+  .ftc-detail-list > li {
+    gap: 12px;
+    padding: 20px 0;
+  }
+  .ftc-case .case-hero-image figcaption,
+  .ftc-case .case-model figcaption {
+    flex-direction: column;
+    gap: 4px;
+  }
+}

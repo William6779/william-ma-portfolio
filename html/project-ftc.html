@@ -9,6 +9,7 @@
       content="A 33-pound FTC Decode robot with a mecanum drivetrain, dual-flywheel launcher, turret, custom transfer system, odometry, and vision."
     />
     <link rel="stylesheet" href="../styles.css" />
+    <script src="../js/robot-viewer-config.js"></script>
   </head>
   <body>
     <div class="wrap">
@@ -16,19 +17,26 @@
         <a href="index.html" class="brand">William</a>
         <a href="index.html#work" class="btn btn-secondary">Back to work</a>
       </header>
-      <main class="project-case">
-        <section class="case-hero detail-top">
+      <main class="project-case ftc-case">
+        <section class="case-hero detail-top" aria-labelledby="ftc-title">
           <a class="detail-back" href="index.html#work">← Project timeline</a>
           <div class="case-hero-heading">
             <div>
               <p class="hero-eyebrow">FTC Decode / Competition robot</p>
-              <h1>FTC robot build</h1>
+              <h1 id="ftc-title">FTC Decode robot</h1>
             </div>
-            <p class="detail-lede">
-              This robot was built around a simple goal: make a compact, serviceable machine that
-              could be adjusted quickly. I leaned on 3D-printed parts and a tight subsystem layout
-              so changes were easy to make during testing.
-            </p>
+            <div class="ftc-overview-copy">
+              <p>
+                We designed and built a 33-pound robot for FTC Decode. It uses a mecanum
+                drivetrain, a dual-flywheel launcher on a rotating turret, and a printed transfer
+                mechanism to move game pieces.
+              </p>
+              <p>
+                The design uses 3D-printed parts to fit the mechanisms into a compact chassis and
+                make revisions during testing. Wiring and components also needed to remain
+                accessible for maintenance.
+              </p>
+            </div>
           </div>
           <figure class="case-hero-image">
             <img
@@ -47,212 +55,218 @@
           </div>
         </section>
 
-        <section class="case-section case-architecture">
+        <section class="case-section" aria-labelledby="ftc-model-title">
           <div class="case-section-heading">
-            <p class="case-eyebrow">01 / Robot systems</p>
-            <h2>A lot of mechanism in a small robot.</h2>
+            <p class="case-eyebrow">Interactive CAD</p>
+            <h2 id="ftc-model-title">Robot assembly</h2>
             <p>
-              The chassis, launcher, turret, transfer, and wiring all had to fit together. We
-              designed them as one system and then adjusted parts as testing showed what needed to
-              change.
+              Load the model, then drag to rotate the robot and inspect how the mechanisms fit
+              together. Scroll or pinch to zoom.
             </p>
           </div>
-          <div class="case-architecture-grid">
-            <figure class="case-plan-image">
-              <img
-                src="../assets/Engineering/FTCDecodeIsometricCAD.png"
-                alt="Isometric CAD render showing the FTC robot's integrated mechanisms"
-              />
-              <figcaption>Robot assembly / isometric CAD</figcaption>
-            </figure>
-            <div class="case-systems">
-              <article>
-                <span class="case-index">A</span>
-                <div>
-                  <h3>Mecanum drivetrain</h3>
-                  <p>
-                    Four mecanum wheels provide forward motion, strafing, and rotation. Seven
-                    goBILDA Yellow Jacket 312 RPM motors power the drivetrain, selected to balance
-                    speed, torque, and the available space.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <span class="case-index">B</span>
-                <div>
-                  <h3>Flywheel launcher + turret</h3>
-                  <p>
-                    Two 6000 RPM motors drive a dual-flywheel launcher. At about 5 mm of
-                    compression, it could reach roughly 30 ft. A two-servo turret turns about 180°
-                    so the launcher can aim without turning the whole robot.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <span class="case-index">C</span>
-                <div>
-                  <h3>Transfer + basket</h3>
-                  <p>
-                    A three-stage printed transfer extends more than 10 cm from an 8 cm retracted
-                    footprint. The basket mechanism uses a 3:1 servo reduction, giving it about 810°
-                    of rotation through the mechanism.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <span class="case-index">D</span>
-                <div>
-                  <h3>Odometry + vision</h3>
-                  <p>
-                    Two-wheel odometry, motor encoders, and Limelight vision provide position and
-                    targeting information. Together, they give the robot more to work with than
-                    timed motor commands alone.
-                  </p>
-                </div>
-              </article>
-            </div>
+          <figure class="case-model">
+            <!-- The CAD export uses +X as up; align it with the viewer's +Y orbit axis. -->
+            <model-viewer
+              id="ftc-model"
+              class="case-model-viewer"
+              data-src="../assets/FTC_Robot3DModel.web.glb"
+              poster="../assets/Engineering/FTCDecodeIsometricCAD.png"
+              alt="Interactive 3D CAD model of the FTC Decode competition robot"
+              orientation="90deg 0deg 0deg"
+              camera-controls
+              interaction-prompt="none"
+              disable-tap
+              shadow-intensity="0"
+              exposure="0.65"
+              touch-action="pan-y"
+              tabindex="0"
+              loading="eager"
+            ></model-viewer>
+            <figcaption>
+              <span>FTC Decode robot / CAD assembly</span><span>Drag to rotate</span>
+            </figcaption>
+          </figure>
+          <div class="case-model-actions">
+            <button class="btn btn-primary" id="load-ftc-model" type="button">
+              Load interactive model
+            </button>
+            <p class="case-model-note">Optimized 3D preview / about 36.4 MB.</p>
           </div>
+          <p class="case-model-status" id="ftc-model-status" role="status" aria-live="polite">
+            The model only downloads when you choose to load it.
+          </p>
         </section>
 
-        <section class="case-section case-build" aria-labelledby="ftc-build-title">
-          <div class="case-section-heading case-build-heading">
-            <p class="case-eyebrow">02 / Build timeline</p>
-            <h2 id="ftc-build-title">Design, build, test, repeat.</h2>
+        <section class="case-section" aria-labelledby="ftc-systems-title">
+          <div class="case-section-heading">
+            <p class="case-eyebrow">01</p>
+            <h2 id="ftc-systems-title">Robot systems</h2>
             <p>
-              These are the main stages of the build. Dates can be added as we fill in the season
-              timeline.
+              The drivetrain, launcher, turret, and transfer share the chassis with the electronics
+              and wiring. Their layout determines the space available for each mechanism and the
+              access needed to service it.
             </p>
           </div>
-          <ol class="case-timeline">
-            <li>
-              <p class="case-timeline-date">Date TBD</p>
-              <span class="case-timeline-number">01</span>
-              <h3>Design around the footprint</h3>
+          <div class="ftc-detail-list">
+            <article>
+              <h3>Mecanum drivetrain</h3>
               <p>
-                Fit the drivetrain and scoring systems into a 439 × 425 × 440 mm robot, leaving room
-                for structure, wiring, and service access.
+                Four mecanum wheels provide forward motion, strafing, and rotation. Seven
+                goBILDA Yellow Jacket 312 RPM motors power the drivetrain, selected to balance
+                speed, torque, and the available space.
               </p>
-              <span class="case-timeline-tag">Packaging</span>
+            </article>
+            <article>
+              <h3>Flywheel launcher and turret</h3>
+              <p>
+                Two 6000 RPM motors drive a dual-flywheel launcher. At about 5 mm of compression,
+                it could reach roughly 30 ft. A two-servo turret turns about 180° so the launcher
+                can aim without turning the whole robot.
+              </p>
+            </article>
+            <article>
+              <h3>Transfer and basket</h3>
+              <p>
+                A three-stage printed transfer extends more than 10 cm from an 8 cm retracted
+                footprint. The basket mechanism uses a 3:1 servo reduction, giving it about 810°
+                of rotation through the mechanism.
+              </p>
+            </article>
+            <article>
+              <h3>Odometry and vision</h3>
+              <p>
+                Two-wheel odometry, motor encoders, and Limelight vision provide position and
+                targeting information for driving and aiming.
+              </p>
+            </article>
+          </div>
+          <figure class="ftc-cad-figure">
+            <img
+              src="../assets/Engineering/FTCDecodeIsometricCAD.png"
+              alt="Isometric CAD render showing the FTC robot's integrated mechanisms"
+              loading="lazy"
+            />
+            <figcaption>Robot assembly / isometric CAD</figcaption>
+          </figure>
+        </section>
+
+        <section class="case-section" aria-labelledby="ftc-build-title">
+          <div class="case-section-heading">
+            <p class="case-eyebrow">02</p>
+            <h2 id="ftc-build-title">Build process</h2>
+            <p>
+              The build involved laying out the robot in CAD, fabricating custom parts, assembling
+              the mechanisms, and adjusting them through testing and competition.
+            </p>
+          </div>
+          <ol class="ftc-detail-list">
+            <li>
+              <h3>Chassis layout</h3>
+              <p>
+                We arranged the drivetrain and scoring systems within a 439 × 425 × 440 mm robot,
+                allowing space for structure, wiring, and service access.
+              </p>
             </li>
             <li>
-              <p class="case-timeline-date">Date TBD</p>
-              <span class="case-timeline-number">02</span>
-              <h3>Make parts, then improve them</h3>
+              <h3>Custom parts and fabrication</h3>
               <p>
-                Design more than 150 custom parts. 3D printing over 70% of them made it practical to
+                The robot uses more than 150 custom parts. 3D printing over 70% made it practical to
                 revise mounts, guides, and mechanism interfaces as we tested.
               </p>
-              <span class="case-timeline-tag">CAD + fabrication</span>
             </li>
             <li>
-              <p class="case-timeline-date">Date TBD</p>
-              <span class="case-timeline-number">03</span>
-              <h3>Bring the mechanisms together</h3>
+              <h3>System integration</h3>
               <p>
-                Integrate the mecanum drive, flywheel launcher, turret, transfer, basket, odometry,
-                and Limelight into one serviceable robot.
+                Assembly brought the drivetrain, launcher, turret, transfer, basket, odometry,
+                and Limelight together in the chassis. The layout needed clearance for moving
+                parts and access to electrical connections.
               </p>
-              <span class="case-timeline-tag">Integration</span>
             </li>
             <li>
-              <p class="case-timeline-date">Date TBD</p>
-              <span class="case-timeline-number">04</span>
-              <h3>Tune for competition</h3>
+              <h3>Competition adjustments</h3>
               <p>
-                Test mechanisms under match conditions, make changes between events, and keep
-                iterating after the robot first worked.
+                We tested the mechanisms under match conditions and revised parts between events
+                as problems appeared.
               </p>
-              <span class="case-timeline-tag">Competition</span>
             </li>
           </ol>
         </section>
 
-        <section class="case-section case-decisions">
+        <section class="case-section" aria-labelledby="ftc-decisions-title">
           <div class="case-section-heading">
-            <p class="case-eyebrow">03 / Design choices</p>
-            <h2>Make each part earn its space.</h2>
-          </div>
-          <div class="case-tradeoffs">
-            <article>
-              <span>01</span>
-              <h3>Print for iteration</h3>
-              <p>
-                We printed custom mounts, guides, brackets, and mechanism parts so we could move
-                from CAD to a testable revision quickly. Load-bearing and wear surfaces still needed
-                to be easy to replace.
-              </p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Choose motors by the job</h3>
-              <p>
-                The drivetrain needed a useful balance of speed and torque; the launcher needed
-                flywheel speed. Using different motors for those jobs made more sense than
-                standardizing on one motor everywhere.
-              </p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Separate driving from aiming</h3>
-              <p>
-                The turret lets the launcher turn independently of the chassis. That adds mechanical
-                and control complexity, but means the robot can keep moving while it adjusts its
-                shot.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section class="case-section case-validation">
-          <div class="case-section-heading">
-            <p class="case-eyebrow">04 / Testing + iteration</p>
-            <h2>Competition made the tradeoffs real.</h2>
+            <p class="case-eyebrow">03</p>
+            <h2 id="ftc-decisions-title">Design decisions</h2>
             <p>
-              We kept refining the robot through competition. It finished in roughly the top half of
-              regional competition, with plenty left to learn from each subsystem.
+              Part fabrication, motor selection, and turret control were shaped by the available
+              space and the requirements of each mechanism.
             </p>
           </div>
-          <ol class="case-test-list">
-            <li>
-              <span>01</span>
-              <div>
-                <h3>Check the drivetrain</h3>
-                <p>
-                  Test straight-line speed, strafing, rotation, acceleration, and motor
-                  synchronization. Wheel alignment, symmetry, weight distribution, and interference
-                  all affect how a mecanum robot moves.
-                </p>
-              </div>
-            </li>
-            <li>
-              <span>02</span>
-              <div>
-                <h3>Tune for repeatable shots</h3>
-                <p>
-                  Track flywheel speed, compression, ball position, launch angle, battery voltage,
-                  and motor temperature. The goal is a predictable shot, not just a maximum-range
-                  one.
-                </p>
-              </div>
-            </li>
-            <li>
-              <span>03</span>
-              <div>
-                <h3>Refine the moving mechanisms</h3>
-                <p>
-                  Check turret range, accuracy, backlash, and response, then watch the transfer for
-                  friction, jams, and unreliable extension. Small geometry changes can make a big
-                  difference in a tightly packed robot.
-                </p>
-              </div>
-            </li>
-          </ol>
+          <div class="ftc-detail-list">
+            <article>
+              <h3>3D-printed components</h3>
+              <p>
+                Printed mounts, guides, brackets, and mechanism parts could be revised and
+                fabricated during testing. Parts subject to load or wear also needed to be
+                accessible for replacement.
+              </p>
+            </article>
+            <article>
+              <h3>Motor selection</h3>
+              <p>
+                The drivetrain uses 312 RPM motors to balance wheel speed and torque. The
+                launcher uses 6000 RPM motors for the flywheels.
+              </p>
+            </article>
+            <article>
+              <h3>Independent turret aiming</h3>
+              <p>
+                The turret turns the launcher independently of the chassis, allowing the robot to
+                adjust its aim while driving. The mechanism adds moving parts and requires
+                coordination between driving and aiming.
+              </p>
+            </article>
+          </div>
         </section>
 
-        <section class="case-section case-gallery">
+        <section class="case-section" aria-labelledby="ftc-testing-title">
           <div class="case-section-heading">
-            <p class="case-eyebrow">05 / Robot details</p>
-            <h2>One robot, many subsystems.</h2>
+            <p class="case-eyebrow">04</p>
+            <h2 id="ftc-testing-title">Competition and testing</h2>
+            <p>
+              The robot finished in roughly the top half of regional competition. The checks below
+              outline how to evaluate drivetrain motion, shot consistency, and mechanism reliability.
+            </p>
+          </div>
+          <div class="ftc-detail-list">
+            <article>
+              <h3>Drivetrain motion</h3>
+              <p>
+                Check straight-line speed, strafing, rotation, acceleration, and motor
+                synchronization. Wheel alignment, symmetry, weight distribution, and interference
+                all affect how a mecanum robot moves.
+              </p>
+            </article>
+            <article>
+              <h3>Shot consistency</h3>
+              <p>
+                Track flywheel speed, compression, ball position, launch angle, battery voltage,
+                and motor temperature to identify their effects on shot range and repeatability.
+              </p>
+            </article>
+            <article>
+              <h3>Mechanism reliability</h3>
+              <p>
+                Check turret range, accuracy, backlash, and response, then watch the transfer for
+                friction, jams, and inconsistent extension.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="case-section case-gallery" aria-labelledby="ftc-details-title">
+          <div class="case-section-heading">
+            <p class="case-eyebrow">05</p>
+            <h2 id="ftc-details-title">Assembly details</h2>
           </div>
           <div class="detail-gallery">
             <figure>
@@ -304,6 +318,11 @@
         <a href="index.html#work">← Back to project timeline</a>
       </footer>
     </div>
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
     <script type="module" src="../script.js"></script>
+    <script type="module" src="../js/ftc-model.js"></script>
   </body>
 </html>
