@@ -37,6 +37,66 @@
               </p>
             </div>
           </div>
+        </section>
+
+        <section class="swerve-section" aria-labelledby="swerve-model-title">
+          <div class="swerve-section-heading">
+            <p class="case-eyebrow">Interactive CAD</p>
+            <h2 id="swerve-model-title">Drivetrain assembly</h2>
+            <p>
+              Drag to rotate the model. Scroll or pinch to zoom.
+            </p>
+          </div>
+          <figure class="swerve-model">
+            <!-- The CAD export uses -Z as up; align it with the viewer's +Y orbit axis. -->
+            <model-viewer
+              id="swerve-model"
+              class="swerve-model-viewer"
+              src="../assets/Models/Swerve_Assembly.web.glb"
+              poster="../assets/ModelPreviews/SwerveDriveModelPreview.png"
+              alt="Interactive 3D CAD model of the three-module swerve drivetrain"
+              orientation="0deg 90deg 0deg"
+              camera-orbit="0deg 75deg 105%"
+              field-of-view="30deg"
+              camera-controls
+              interaction-prompt="none"
+              disable-tap
+              shadow-intensity="0"
+              exposure="0.65"
+              touch-action="pan-y"
+              tabindex="0"
+              loading="eager"
+            ></model-viewer>
+            <figcaption>
+              <span>Three-module swerve drivetrain / CAD assembly</span
+              ><span>Drag to rotate</span>
+            </figcaption>
+          </figure>
+          <div class="swerve-model-actions">
+            <button class="btn btn-primary" id="load-swerve-model" type="button" hidden>
+              Try loading again
+            </button>
+            <p class="swerve-model-note">Optimized 3D preview / about 5.4 MB.</p>
+          </div>
+          <p
+            class="swerve-model-status"
+            id="swerve-model-status"
+            role="status"
+            aria-live="polite"
+          >
+            Loading the interactive model...
+          </p>
+        </section>
+
+        <section class="swerve-section" aria-labelledby="swerve-prototype-title">
+          <div class="swerve-section-heading">
+            <p class="case-eyebrow">Physical prototype</p>
+            <h2 id="swerve-prototype-title">The assembled drivetrain</h2>
+            <p>
+              The operational prototype brings the modules, motors, controllers, and wiring
+              together in one chassis.
+            </p>
+          </div>
           <figure class="swerve-hero-photo">
             <img
               src="../assets/Engineering/SwerveTop.jpeg"
@@ -327,53 +387,7 @@
               </li>
             </ul>
           </div>
-          <div class="swerve-interactive">
-            <div class="swerve-interactive-heading">
-              <p class="case-eyebrow">Interactive CAD</p>
-              <h3>Drivetrain assembly</h3>
-              <p>
-                Load the model to replace the preview, then drag to rotate it. Scroll or pinch to
-                zoom.
-              </p>
-            </div>
-            <figure class="swerve-model">
-              <!-- The CAD export uses -Z as up; align it with the viewer's +Y orbit axis. -->
-              <model-viewer
-                id="swerve-model"
-                class="swerve-model-viewer"
-                data-src="../assets/Swerve_Assembly.web.glb"
-                poster="../assets/Engineering/SwerveModelPreview.png"
-                alt="Interactive 3D CAD model of the three-module swerve drivetrain"
-                orientation="0deg 90deg 0deg"
-                camera-controls
-                interaction-prompt="none"
-                disable-tap
-                shadow-intensity="0"
-                exposure="0.65"
-                touch-action="pan-y"
-                tabindex="0"
-                loading="eager"
-              ></model-viewer>
-              <figcaption>
-                <span>Three-module swerve drivetrain / CAD assembly</span
-                ><span>Drag to rotate</span>
-              </figcaption>
-            </figure>
-            <div class="swerve-model-actions">
-              <button class="btn btn-primary" id="load-swerve-model" type="button">
-                Load interactive model
-              </button>
-              <p class="swerve-model-note">Optimized 3D preview / about 5.4 MB.</p>
-            </div>
-            <p
-              class="swerve-model-status"
-              id="swerve-model-status"
-              role="status"
-              aria-live="polite"
-            >
-              The model only downloads when you choose to load it.
-            </p>
-          </div>
+
         </section>
       </main>
       <footer class="detail-footer">

@@ -29,7 +29,7 @@
   margin-bottom: 0;
 }
 .swerve-hero-photo {
-  margin: 40px 0 0;
+  margin: 0;
 }
 .swerve-hero-photo img {
   display: block;
@@ -362,23 +362,6 @@
 .swerve-test-plan h3 {
   margin: 0;
   font-size: 17px;
-}
-.swerve-interactive {
-  margin-top: 68px;
-  padding-top: 44px;
-  border-top: 1px solid var(--color-divider);
-}
-.swerve-interactive-heading {
-  margin-bottom: 24px;
-}
-.swerve-interactive-heading h3 {
-  margin: 0 0 8px;
-  font-size: clamp(26px, 3vw, 36px);
-}
-.swerve-interactive-heading > p:last-child {
-  margin: 0;
-  color: var(--color-neutral-700);
-  font-size: 14px;
 }
 .swerve-model {
   margin: 0;

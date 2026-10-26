@@ -1,4 +1,4 @@
-/* FTC uses the same type sizes, section spacing, and text rows as Swerve. */
+/* FTC case study: short system rows with optional technical notes. */
 .ftc-case .case-hero {
   padding: 40px 0 64px;
 }
@@ -8,6 +8,13 @@
 }
 .ftc-case .case-hero-heading h1 {
   letter-spacing: -0.03em;
+}
+.ftc-role {
+  margin: 20px 0 0;
+  color: var(--color-accent-700);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.6;
 }
 .ftc-overview-copy p {
   max-width: 62ch;
@@ -20,7 +27,7 @@
   margin-bottom: 0;
 }
 .ftc-case .case-hero-image {
-  margin-top: 40px;
+  margin-top: 0;
 }
 .ftc-case .case-hero-image img {
   height: clamp(300px, 56vw, 650px);
@@ -75,22 +82,15 @@
   font-size: 14px;
   line-height: 1.7;
 }
-.ftc-cad-figure {
-  margin: 32px 0 0;
+.ftc-case .detail-notes {
+  max-width: 760px;
 }
-.ftc-cad-figure img {
-  display: block;
-  width: 100%;
-  height: clamp(300px, 40vw, 480px);
-  object-fit: contain;
-  background: #ffffff;
+.ftc-case .detail-notes summary {
+  line-height: 1.6;
 }
-.ftc-cad-figure figcaption {
-  padding-top: 10px;
-  color: var(--color-neutral-600);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.ftc-case .detail-notes summary:focus-visible {
+  outline: 2px solid var(--color-accent-700);
+  outline-offset: 6px;
 }
 
 @media (max-width: 700px) {

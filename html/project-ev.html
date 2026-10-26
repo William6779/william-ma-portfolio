@@ -6,9 +6,10 @@
     <title>Electric Vehicle — William</title>
     <meta
       name="description"
-      content="A compact Science Olympiad autonomous vehicle with a tripod chassis, belt-driven rear wheels, four-bar linkage, and spring-loaded odometry pod."
+      content="A solo Science Olympiad electric vehicle project with a narrow three-point chassis, four-bar steering linkage, and Arduino Uno R3 control."
     />
     <link rel="stylesheet" href="../styles.css" />
+    <script src="../js/robot-viewer-config.js"></script>
   </head>
   <body>
     <div class="wrap">
@@ -16,18 +17,74 @@
         <a href="../index.html" class="brand">William</a>
         <a href="../index.html#work" class="btn btn-secondary">Back to work</a>
       </header>
-      <main class="project-case">
-        <section class="case-hero detail-top">
+      <main class="project-case ev-case">
+        <section class="case-hero detail-top" aria-labelledby="ev-title">
           <a class="detail-back" href="../index.html#work">← Project timeline</a>
           <div class="case-hero-heading">
             <div>
               <p class="hero-eyebrow">Science Olympiad / Electric Vehicle</p>
-              <h1>Electric vehicle</h1>
+              <h1 id="ev-title">Electric vehicle</h1>
             </div>
-            <p class="detail-lede">
-              I wanted a vehicle that could stop at a known distance without relying on a guess. The
-              tracking wheel and spring-loaded pod gave the Arduino a more direct measure of how far
-              it actually moved.
+            <div class="ev-overview-copy">
+              <p>
+                I designed and built this Science Olympiad electric vehicle as a solo project. The
+                competition required the vehicle to meet both a target distance and a target time.
+              </p>
+              <p>
+                My work covered the mechanical design, electrical architecture, and control system.
+                The vehicle uses a narrow three-point chassis, a servo-driven front steering
+                linkage, and encoder feedback for distance measurement.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="ev-model-title">
+          <div class="case-section-heading">
+            <p class="case-eyebrow">Interactive CAD</p>
+            <h2 id="ev-model-title">Vehicle assembly</h2>
+            <p>Drag to rotate the model. Scroll or pinch to zoom.</p>
+          </div>
+          <figure class="case-model">
+            <model-viewer
+              id="ev-model"
+              class="case-model-viewer"
+              src="../assets/Models/EV_3D_Model.web.glb"
+              poster="../assets/ModelPreviews/EVModelPreview.png"
+              alt="Interactive 3D CAD model of the Science Olympiad electric vehicle"
+              camera-orbit="45deg 65deg 105%"
+              field-of-view="30deg"
+              camera-controls
+              interaction-prompt="none"
+              disable-tap
+              shadow-intensity="0"
+              exposure="0.65"
+              touch-action="pan-y"
+              tabindex="0"
+              loading="eager"
+            ></model-viewer>
+            <figcaption>
+              <span>Electric Vehicle / CAD assembly</span><span>Drag to rotate</span>
+            </figcaption>
+          </figure>
+          <div class="case-model-actions">
+            <button class="btn btn-primary" id="load-ev-model" type="button" hidden>
+              Try loading again
+            </button>
+            <p class="case-model-note">Optimized 3D preview / about 1.9 MB.</p>
+          </div>
+          <p class="case-model-status" id="ev-model-status" role="status" aria-live="polite">
+            Loading the interactive model...
+          </p>
+        </section>
+
+        <section class="case-section case-project-overview" aria-labelledby="ev-overview-title">
+          <div class="case-section-heading">
+            <p class="case-eyebrow">Design overview</p>
+            <h2 id="ev-overview-title">Vehicle layout</h2>
+            <p>
+              A brushed DC motor provides propulsion. A servo turns the single front wheel through
+              a four-bar linkage, and a separate tracking wheel measures ground travel.
             </p>
           </div>
           <figure class="case-hero-image">
@@ -40,252 +97,176 @@
             </figcaption>
           </figure>
           <div class="case-specs" aria-label="Vehicle features">
-            <div><strong>02</strong><span>driven rear wheels</span></div>
-            <div><strong>03</strong><span>chassis contact points</span></div>
-            <div><strong>01</strong><span>tracking wheel</span></div>
-            <div><strong>Arduino</strong><span>feedback control</span></div>
+            <div><strong>Drive</strong><span>Brushed DC motor / BTS7960</span></div>
+            <div><strong>Power</strong><span>8 AA batteries</span></div>
+            <div><strong>Steering</strong><span>Servo / four-bar linkage</span></div>
+            <div><strong>Controller</strong><span>Arduino Uno R3</span></div>
           </div>
         </section>
 
-        <section class="case-section case-architecture">
+        <section class="case-section" aria-labelledby="ev-mechanical-title">
           <div class="case-section-heading">
-            <p class="case-eyebrow">01 / Vehicle systems</p>
-            <h2>Measure the movement, not just the motor turns.</h2>
+            <p class="case-eyebrow">01</p>
+            <h2 id="ev-mechanical-title">Mechanical design decisions</h2>
             <p>
-              The rear wheels move the vehicle; a separate tracking wheel measures how far it
-              actually goes. The Arduino uses that feedback to judge when to slow down and stop.
+              I needed a vehicle roughly 100–130 mm wide that could turn efficiently. This drove
+              the three-point chassis layout and front steering arrangement.
             </p>
           </div>
-          <div class="case-architecture-grid">
-            <figure class="case-plan-image">
-              <img
-                src="../assets/Engineering/EVOdometryPod.png"
-                alt="CAD render of the spring-loaded odometry pod and tracking wheel"
-              />
-              <figcaption>Spring-loaded tracking wheel / CAD</figcaption>
-            </figure>
-            <div class="case-systems">
-              <article>
-                <span class="case-index">A</span>
-                <div>
-                  <h3>Three-point chassis</h3>
-                  <p>
-                    Two independently driven rear wheels provide propulsion and turning. The front
-                    assembly is the third contact point, avoiding the uneven loading a rigid
-                    four-wheel chassis can get on a slightly irregular surface.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <span class="case-index">B</span>
-                <div>
-                  <h3>Four-bar front assembly</h3>
-                  <p>
-                    The four-bar linkage, ground contact, and odometry pod share the front of the
-                    chassis. Their geometry has to work together while preserving room for the
-                    tracking wheel and enough ground clearance.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <span class="case-index">C</span>
-                <div>
-                  <h3>Spring-loaded odometry</h3>
-                  <p>
-                    A spring keeps the tracking wheel against the floor as the chassis moves over
-                    small surface changes. An encoder reads the wheel, giving the Arduino a
-                    measurement of actual travel.
-                  </p>
-                </div>
-              </article>
-              <article>
-                <span class="case-index">D</span>
-                <div>
-                  <h3>Feedback-based stopping</h3>
-                  <p>
-                    The Arduino compares measured displacement with the target and uses the
-                    difference to control the motors. That is more dependable than assuming a timed
-                    motor command always covers the same distance.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section class="case-section case-build" aria-labelledby="ev-build-title">
-          <div class="case-section-heading case-build-heading">
-            <p class="case-eyebrow">02 / Build timeline</p>
-            <h2 id="ev-build-title">From chassis to repeatable stops.</h2>
-            <p>
-              The main steps in the build. Dates can be added once the event and testing history is
-              filled in.
-            </p>
-          </div>
-          <ol class="case-timeline">
-            <li>
-              <p class="case-timeline-date">Date TBD</p>
-              <span class="case-timeline-number">01</span>
-              <h3>Design around the constraints</h3>
-              <p>
-                Start with the limits on size, weight, and power, then make stopping accuracy the
-                goal for the chassis and control system.
-              </p>
-              <span class="case-timeline-tag">Requirements</span>
-            </li>
-            <li>
-              <p class="case-timeline-date">Date TBD</p>
-              <span class="case-timeline-number">02</span>
-              <h3>Build the rolling chassis</h3>
-              <p>
-                Use two belt-driven rear wheels for propulsion and turning, with a tripod layout to
-                keep the support structure simple and light.
-              </p>
-              <span class="case-timeline-tag">Chassis + drive</span>
-            </li>
-            <li>
-              <p class="case-timeline-date">Date TBD</p>
-              <span class="case-timeline-number">03</span>
-              <h3>Fit the linkage and tracker</h3>
-              <p>
-                Bring the four-bar linkage and spring-loaded tracking wheel together at the front,
-                keeping the wheel in contact without adding unnecessary drag.
-              </p>
-              <span class="case-timeline-tag">Mechanism + sensing</span>
-            </li>
-            <li>
-              <p class="case-timeline-date">Date TBD</p>
-              <span class="case-timeline-number">04</span>
-              <h3>Calibrate, run, repeat</h3>
-              <p>
-                Compare encoder distance with known travel, check contact over surface changes, and
-                tune the Arduino's stopping response across repeated runs.
-              </p>
-              <span class="case-timeline-tag">Testing</span>
-            </li>
-          </ol>
-        </section>
-
-        <section class="case-section case-decisions">
-          <div class="case-section-heading">
-            <p class="case-eyebrow">03 / Design choices</p>
-            <h2>Build around what the vehicle needs to measure.</h2>
-          </div>
-          <div class="case-tradeoffs">
+          <div class="ev-detail-list">
             <article>
-              <span>01</span>
-              <h3>Three points on the ground</h3>
+              <h3>Three-point chassis</h3>
               <p>
-                The tripod layout saves hardware and weight, and avoids asking four wheels to stay
-                loaded evenly on every surface. It also lets the front structure do more than one
-                job.
+                I chose two rear wheels and one front wheel to keep the chassis narrow. Using a
+                single front wheel also minimized wheel scrub during steering.
               </p>
             </article>
             <article>
-              <span>02</span>
-              <h3>A wheel just for measuring</h3>
+              <h3>Four-bar steering linkage</h3>
               <p>
-                The drive wheels are for propulsion; the tracking wheel is for distance. Measuring
-                actual ground travel makes stopping less sensitive to drivetrain slip and changing
-                motor performance.
+                The linkage let me mount the steering servo closer to the main body. This shortened
+                the wiring and kept the servo's weight closer to the center of the vehicle.
               </p>
             </article>
             <article>
-              <span>03</span>
-              <h3>Spring, not a rigid mount</h3>
+              <h3>Spring-loaded pod</h3>
               <p>
-                The spring helps the tracking wheel stay on the floor over small bumps. It needs
-                enough force for reliable contact, but not so much that it adds drag or interferes
-                with the vehicle.
+                I used a spring-loaded mount to keep the tracking wheel against the floor over small
+                surface changes. The wheel measures travel independently of the drivetrain.
+              </p>
+            </article>
+          </div>
+          <figure class="ev-cad-figure">
+            <img
+              src="../assets/Engineering/EVOdometryPod.png"
+              alt="CAD render of the spring-loaded odometry pod and tracking wheel"
+              loading="lazy"
+            />
+            <figcaption>Spring-loaded odometry pod / CAD</figcaption>
+          </figure>
+        </section>
+
+        <section class="case-section" aria-labelledby="ev-control-title">
+          <div class="case-section-heading">
+            <p class="case-eyebrow">02</p>
+            <h2 id="ev-control-title">Electrical and control integration</h2>
+            <p>
+              I designed the electrical system around eight AA batteries, a BTS7960 motor driver,
+              and an Arduino Uno R3. The Arduino read both the drive motor encoder and an AS5047P
+              magnetic encoder.
+            </p>
+          </div>
+          <div class="ev-detail-list">
+            <article>
+              <h3>Drive power</h3>
+              <p>
+                Eight AA batteries supplied power to the brushed DC motor through the BTS7960
+                motor driver. The Arduino controlled the motor through the driver.
+              </p>
+            </article>
+            <article>
+              <h3>Encoder feedback</h3>
+              <p>
+                The motor encoder measured drive motor rotation. The AS5047P magnetic encoder
+                measured tracking-wheel rotation, providing a separate measurement of vehicle
+                travel.
+              </p>
+            </article>
+            <article>
+              <h3>Distance and time targets</h3>
+              <p>
+                Both stopping distance and elapsed time affected the competition result. I used
+                encoder feedback in the control system to track vehicle motion against the target
+                distance.
               </p>
             </article>
           </div>
         </section>
 
-        <section class="case-section case-validation">
+        <section class="case-section" aria-labelledby="ev-troubleshooting-title">
           <div class="case-section-heading">
-            <p class="case-eyebrow">04 / Testing + next iteration</p>
-            <h2>Make each run more predictable.</h2>
+            <p class="case-eyebrow">03</p>
+            <h2 id="ev-troubleshooting-title">Steering linkage troubleshooting</h2>
             <p>
-              I focused on repeatability: check what the odometry measured against what the vehicle
-              actually did, then work out whether the error came from the pod, drivetrain, or
-              control.
+              The first linkage had two problems: unpredictable steering near its travel limit and
+              stiffness from small misalignments. I corrected the geometry and changed a joint.
             </p>
           </div>
-          <ol class="case-test-list">
-            <li>
-              <span>01</span>
-              <div>
-                <h3>Calibrate the tracking wheel</h3>
-                <p>
-                  Move the vehicle over known distances and compare the encoder estimate with the
-                  real measurement. Use repeated runs to tune wheel diameter, encoder resolution,
-                  and distance per rotation.
-                </p>
-              </div>
-            </li>
-            <li>
-              <span>02</span>
-              <div>
-                <h3>Check ground contact</h3>
-                <p>
-                  Watch the tracking wheel during acceleration, braking, turns, and small surface
-                  changes. Adjust the spring so it follows the floor without adding excessive
-                  friction.
-                </p>
-              </div>
-            </li>
-            <li>
-              <span>03</span>
-              <div>
-                <h3>Test the complete stop</h3>
-                <p>
-                  Run straight and turning paths, check belt behavior and motor synchronization,
-                  then compare the target distance with the final stop over multiple runs.
-                </p>
-              </div>
-            </li>
-          </ol>
-          <p class="case-next-step">
-            For another iteration, I’d look at reducing friction in the pod, refining the linkage,
-            and improving the stopping algorithm.
-          </p>
+          <div class="ev-detail-list">
+            <article>
+              <h3>Unpredictable wheel rotation</h3>
+              <p>
+                The linkage initially operated at the limit of its controllable range, making the
+                front wheel's rotation difficult to predict. I increased the offset at the linkage
+                connections to move it away from that limit.
+              </p>
+            </article>
+            <article>
+              <h3>Linkage stiffness</h3>
+              <p>
+                The linkage was also too stiff. I added a small ball joint that allowed slight
+                misalignment of the bar and let the linkage move freely.
+              </p>
+            </article>
+          </div>
         </section>
 
-        <section class="case-section case-gallery">
+        <section class="case-section case-gallery" aria-labelledby="ev-build-title">
           <div class="case-section-heading">
-            <p class="case-eyebrow">05 / Build details</p>
-            <h2>The pod and the full vehicle.</h2>
+            <p class="case-eyebrow">04</p>
+            <h2 id="ev-build-title">Physical build</h2>
           </div>
-          <div class="detail-gallery">
-            <figure>
-              <img
-                src="../assets/Engineering/EVOdometryPod.png"
-                alt="CAD render of the spring-loaded odometry pod"
-              />
-              <figcaption>01 / Odometry pod</figcaption>
-            </figure>
+          <div class="detail-gallery ev-build-photo">
             <figure>
               <img
                 src="../assets/Engineering/EVandRobotTourImage.jpg"
                 alt="Science Olympiad electric vehicle and Robot Tour builds"
+                loading="lazy"
               />
-              <figcaption>02 / Vehicle builds</figcaption>
+              <figcaption>Electric Vehicle and Robot Tour builds</figcaption>
             </figure>
           </div>
         </section>
 
-        <section class="case-section case-video-section">
+        <section class="case-section" aria-labelledby="ev-video-title">
           <div class="case-section-heading">
-            <p class="case-eyebrow">06 / In motion</p>
-            <h2>See the vehicle run.</h2>
+            <p class="case-eyebrow">05</p>
+            <h2 id="ev-video-title">Vehicle demonstration</h2>
           </div>
           <div class="project-video">
             <iframe
               src="https://drive.google.com/file/d/1rCsXXqNx6bPjojBzbVnp78RNSXPHgU3l/preview"
               title="Science Olympiad electric vehicle demonstration"
               allow="autoplay; fullscreen"
+              loading="lazy"
             ></iframe>
+          </div>
+        </section>
+
+        <section class="case-section" aria-labelledby="ev-results-title">
+          <div class="case-section-heading">
+            <p class="case-eyebrow">06</p>
+            <h2 id="ev-results-title">Testing results</h2>
+            <p>
+              I tested the vehicle against both competition targets: stopping distance and elapsed
+              time.
+            </p>
+          </div>
+          <div class="ev-detail-list">
+            <article>
+              <h3>Distance error: within 2%</h3>
+              <p>
+                The AS5047P provided accurate tracking-wheel measurements for the stopping control.
+                The measured distance error was within 2% of the target distance.
+              </p>
+            </article>
+            <article>
+              <h3>Time error: less than 0.1%</h3>
+              <p>
+                The measured elapsed-time error was less than 0.1% of the target time. Timing was
+                a separate competition requirement alongside stopping distance.
+              </p>
+            </article>
           </div>
         </section>
       </main>
@@ -293,6 +274,11 @@
         <a href="../index.html#work">← Back to project timeline</a>
       </footer>
     </div>
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
+    ></script>
     <script type="module" src="../script.js"></script>
+    <script type="module" src="../js/ev-model.js"></script>
   </body>
 </html>

@@ -325,6 +325,9 @@
 .case-model {
   margin: 0;
 }
+.case-project-overview .case-hero-image {
+  margin: 0;
+}
 .case-model-viewer {
   display: block;
   width: 100%;
@@ -348,6 +351,10 @@
   align-items: center;
   gap: 16px;
   margin-top: 20px;
+}
+.case-model-actions .btn[hidden],
+.swerve-model-actions .btn[hidden] {
+  display: none;
 }
 .case-model-note,
 .case-model-status {

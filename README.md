@@ -34,17 +34,19 @@ point uses native browser modules.
 | Shared project layouts and image galleries              | `css/projects.css`                                      |
 | Swerve layout and diagrams                              | `css/swerve.css`                                        |
 | FTC layout and text rows                                | `css/ftc.css`                                           |
+| Electric Vehicle layout and text rows                   | `css/ev.css`                                            |
 | Resume and image preview dialog styles                  | `css/resume.css`, `css/lightbox.css`                    |
 | Clock, form feedback, scroll reveal, and image previews | Corresponding files in `js/`                            |
-| Robot viewer setup and loading                         | `js/robot-viewer-config.js`, `js/robot-model.js`, `js/ftc-model.js`, `js/swerve-model.js` |
+| Robot viewer setup and loading                         | `js/robot-viewer-config.js`, `js/robot-model.js`, `js/ftc-model.js`, `js/swerve-model.js`, `js/robot-tour-model.js`, `js/ev-model.js` |
 
 `styles.css` imports the stylesheets in cascade order and loads the font once.
 Responsive rules live with their component or page styles. Keep new styles in the
 appropriate file and use named classes instead of inline styles.
 
 `script.js` initializes shared behaviors. Each initializer returns immediately on
-pages without that feature. The FTC and Swerve pages load their viewer scripts separately;
-the configuration script must run before the external model-viewer module.
+pages without that feature. The FTC, Swerve, Robot Tour, and Electric Vehicle pages
+load their viewer scripts separately; the configuration script must run before the
+external model-viewer module.
 
 To add a project, copy the closest `html/project-*.html` layout into `html/`, update
 its content and image descriptions, and add a link in the home page timeline.
@@ -75,14 +77,23 @@ This checks HTML tag nesting, duplicate IDs, local files and anchors, CSS import
 and JavaScript imports. It also checks filename case for deployment to
 case-sensitive hosts. It does not fetch external services or render the pages.
 After changing interactions, check image previews with the mouse and keyboard,
-the contact form feedback, and the FTC and Swerve load/retry controls in a browser. After
+the contact form feedback, and each project's model load/retry controls in a browser. After
 changing layout, check both desktop and mobile widths.
 
 ## Swerve 3D preview
 
-The page loads `assets/Swerve_Assembly.web.glb` only after the visitor clicks
-**Load interactive model**. Keep `Swerve_Assembly.gltf` as the original CAD export;
-the `.gltf.gz` file is not used by the viewer.
+The page automatically loads `assets/Models/Swerve_Assembly.web.glb` when opened. Keep `assets/Models/Swerve_Assembly.gltf` as the original CAD
+export; the `.gltf.gz` file is not used by the viewer. Interactive model poster images
+are stored in `assets/ModelPreviews/`.
+
+All four viewers load automatically using `src` and `loading="eager"`. Each
+viewer appears near the top of its project page, below the introduction and before
+the project photos and specifications. Each page gives the introduction, interactive
+CAD, and prototype photo or design overview separate sections with headings and
+dividers. Each viewer uses a single built-in poster during loading, with no separate preview
+image or overlay. The responsive viewer height stays fixed while loading.
+`js/robot-model.js` reports loading status and shows a retry button only if
+loading fails. Automatic loading does not move keyboard focus or scroll the page.
 
 The viewer applies `orientation="0deg 90deg 0deg"` to align the CAD export's
 negative Z up direction with the viewer's positive Y up direction. Keep this
@@ -91,7 +102,7 @@ rotation on the viewer so dragging orbits around the robot's upright axis.
 Regenerate the web asset with [gltfpack 1.3](https://meshoptimizer.org/gltf/):
 
 ```powershell
-gltfpack -i assets/Swerve_Assembly.gltf -o assets/Swerve_Assembly.web.glb -si 0.15 -se 0.001 -sp -mm -cc
+gltfpack -i assets/Models/Swerve_Assembly.gltf -o assets/Models/Swerve_Assembly.web.glb -si 0.15 -se 0.001 -sp -mm -cc
 ```
 
 This merges static geometry by material, simplifies it toward 15% of the original
@@ -119,9 +130,8 @@ configured before model-viewer initializes; it is required to load the GLB.
 
 ## FTC 3D preview
 
-The FTC page loads `assets/FTC_Robot3DModel.web.glb` after the visitor clicks
-**Load interactive model**, using the same decoder, loading/retry controls, and
-rendering settings as the Swerve preview. The original `FTC_Robot3DModel.gltf`
+The FTC page automatically loads `assets/Models/FTC_Robot3DModel.web.glb` when opened, using the same decoder, loading/retry controls, and
+rendering settings as the Swerve preview. The original `assets/Models/FTC_Robot3DModel.gltf`
 stays local and is excluded from Git. Only the optimized GLB is needed for hosting.
 
 This export uses positive X as up. The viewer's `orientation="90deg 0deg 0deg"`
@@ -134,8 +144,8 @@ website still requires no package installation or build step.
 
 ```powershell
 python -m pip install DracoPy==2.2.0 numpy
-python scripts/decode_draco_gltf.py assets/FTC_Robot3DModel.gltf "$env:TEMP/ftc-decoded.gltf"
-gltfpack -i "$env:TEMP/ftc-decoded.gltf" -o assets/FTC_Robot3DModel.web.glb -si 0.15 -se 0.001 -sp -mm -cc
+python scripts/decode_draco_gltf.py assets/Models/FTC_Robot3DModel.gltf "$env:TEMP/ftc-decoded.gltf"
+gltfpack -i "$env:TEMP/ftc-decoded.gltf" -o assets/Models/FTC_Robot3DModel.web.glb -si 0.15 -se 0.001 -sp -mm -cc
 ```
 
 The converter writes `ftc-decoded.gltf` and `ftc-decoded.bin` together in the
@@ -151,3 +161,29 @@ files until gltfpack finishes.
 This reduces file size by 92.7%. Counts are from the scene data and gltfpack's
 report, not browser frame-rate measurements. As with Swerve, the simplified GLB
 is for display; retain the original export for engineering inspection.
+
+## Robot Tour and Electric Vehicle 3D previews
+
+These pages use the same automatic loading, retry controls, local meshopt decoder, and
+rendering settings as the FTC and Swerve previews. The original `.gltf` exports
+remain local and are excluded from Git; host the optimized `.web.glb` assets.
+Both exports already use positive Y as up, so no orientation correction is needed.
+The Electric Vehicle preview starts at a diagonal camera angle to show its length.
+
+Regenerate with the same gltfpack 1.3 settings:
+
+```powershell
+gltfpack -i assets/Models/Robot_Tour_Model.gltf -o assets/Models/Robot_Tour_Model.web.glb -si 0.15 -se 0.001 -sp -mm -cc
+gltfpack -i assets/Models/EV_3D_Model.gltf -o assets/Models/EV_3D_Model.web.glb -si 0.15 -se 0.001 -sp -mm -cc
+```
+
+| Metric                                       | Robot Tour original | Robot Tour preview | EV original | EV preview |
+| -------------------------------------------- | ------------------: | -----------------: | ----------: | ---------: |
+| File size (decimal MB)                       |               68.84 |               1.36 |      112.18 |       1.92 |
+| Estimated draw calls                         |              23,702 |                 29 |      19,000 |         33 |
+| Rendered triangles, including repeated parts |           1,465,343 |            236,803 |   2,777,990 |    418,302 |
+
+File sizes drop by 98.0% for Robot Tour and 98.3% for Electric Vehicle.
+Counts come from gltfpack's scene report, not browser frame-rate measurements.
+These are simplified display models; retain the original exports for precise
+engineering inspection.

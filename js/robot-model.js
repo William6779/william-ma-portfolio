@@ -29,14 +29,16 @@ export function initRobotModel(name) {
   const viewer = document.getElementById(`${name}-model`);
   const status = document.getElementById(`${name}-model-status`);
   if (!button || !viewer || !status) return;
+  const source = viewer.getAttribute("src");
 
-  // Register once so retries cannot accumulate load/error handlers.
-  viewer.addEventListener("load", () => {
+  function showReady() {
     button.hidden = true;
     viewer.removeAttribute("aria-busy");
     status.textContent = "Model ready. Drag to rotate; scroll or pinch to zoom.";
-    viewer.focus();
-  });
+  }
+
+  // Register once so retries cannot accumulate load/error handlers.
+  viewer.addEventListener("load", showReady);
 
   viewer.addEventListener("error", () => {
     viewer.removeAttribute("src");
@@ -47,19 +49,29 @@ export function initRobotModel(name) {
     status.textContent = "The 3D model could not be loaded. Check your connection, then try again.";
   });
 
-  button.addEventListener("click", async () => {
+  async function loadModel() {
+    button.hidden = true;
     button.disabled = true;
     viewer.setAttribute("aria-busy", "true");
     status.textContent = "Preparing the 3D viewer...";
 
     try {
       await waitForViewer();
+      if (viewer.loaded) {
+        showReady();
+        return;
+      }
       status.textContent = "Downloading and preparing the 3D model...";
-      viewer.src = viewer.dataset.src;
+      viewer.src = source;
     } catch (error) {
       viewer.removeAttribute("aria-busy");
+      button.hidden = false;
       button.disabled = false;
+      button.textContent = "Try loading again";
       status.textContent = error.message;
     }
-  });
+  }
+
+  button.addEventListener("click", loadModel);
+  loadModel();
 }

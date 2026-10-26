@@ -1,0 +1,133 @@
+/* EV follows Swerve's typography, section spacing, and text rows. */
+.ev-case .case-hero {
+  padding: 40px 0 64px;
+}
+.ev-case .case-hero-heading {
+  grid-template-columns: 1.05fr 0.95fr;
+  margin-top: 26px;
+}
+.ev-case .case-hero-heading h1 {
+  letter-spacing: -0.03em;
+}
+.ev-overview-copy p {
+  max-width: 62ch;
+  margin: 0 0 14px;
+  color: var(--color-neutral-800);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.ev-overview-copy p:last-child {
+  margin-bottom: 0;
+}
+.ev-case .case-section-heading {
+  max-width: 760px;
+}
+.ev-case .case-section-heading h2 {
+  max-width: 24ch;
+}
+.ev-case .case-section-heading > p:last-child {
+  max-width: 66ch;
+}
+.ev-case .case-specs {
+  margin-top: 28px;
+}
+.ev-case .case-specs div {
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.ev-case .case-specs strong {
+  font-size: 18px;
+}
+.ev-detail-list {
+  border-top: 1px solid var(--color-divider);
+  border-bottom: 1px solid var(--color-divider);
+}
+.ev-detail-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr);
+  gap: 32px;
+  padding: 24px 0;
+}
+.ev-detail-list article + article {
+  border-top: 1px solid var(--color-divider);
+}
+.ev-detail-list h3 {
+  margin: 0;
+  font-size: 21px;
+}
+.ev-detail-list p {
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.ev-cad-figure {
+  margin: 32px 0 0;
+}
+.ev-cad-figure img {
+  display: block;
+  width: 100%;
+  height: clamp(300px, 40vw, 480px);
+  object-fit: contain;
+  background: #ffffff;
+}
+.ev-cad-figure figcaption {
+  padding-top: 10px;
+  color: var(--color-neutral-600);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ev-case .ev-build-photo {
+  grid-template-columns: minmax(0, 1fr);
+}
+.ev-case .ev-build-photo img {
+  height: clamp(300px, 56vw, 650px);
+  aspect-ratio: auto;
+  border: 0;
+  border-bottom: 3px solid var(--color-accent);
+  background: #101010;
+}
+
+@media (max-width: 700px) {
+  .ev-case .case-hero-heading,
+  .ev-detail-list article {
+    grid-template-columns: 1fr;
+  }
+  .ev-case .case-hero-heading {
+    gap: 20px;
+  }
+  .ev-case .case-hero-heading h1 {
+    font-size: clamp(46px, 12vw, 64px);
+  }
+  .ev-case .case-section {
+    padding: 72px 0;
+  }
+  .ev-case .case-specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ev-case .case-specs div {
+    padding: 14px 8px;
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .ev-case .case-specs div:nth-child(2) {
+    border-right: 0;
+  }
+  .ev-case .case-specs div:nth-child(n + 3) {
+    border-bottom: 0;
+  }
+  .ev-detail-list article {
+    gap: 12px;
+    padding: 20px 0;
+  }
+  .ev-case .case-model figcaption,
+  .ev-case .case-hero-image figcaption {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ev-case .ev-build-photo img {
+    height: 360px;
+  }
+}
